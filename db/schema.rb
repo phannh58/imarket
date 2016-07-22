@@ -111,8 +111,9 @@ ActiveRecord::Schema.define(version: 20160719034921) do
     t.string   "email",           limit: 255
     t.string   "password_digest", limit: 255
     t.string   "avatar",          limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "auth_token",      limit: 255, default: ""
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   add_foreign_key "categories", "stores"
