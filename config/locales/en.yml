@@ -25,6 +25,7 @@ en:
   application:
     api:
       title: "Framgia iMarket API"
+      wrong_access_token: "Wrong access token"
   api:
     v1:
       sessions:

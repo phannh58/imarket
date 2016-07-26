@@ -1,0 +1,3 @@
+facebook_field: "me?fields=email,name,id,picture"
+ACCESS_TOKEN: "HTTP_FB_ACCESS_TOKEN"
+facebook_provider: "facebook"

@@ -6,6 +6,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :avatar
       t.string :auth_token, unique: true, default: ""
+      t.string :provider
+      t.string :uid
 
       t.timestamps null: false
     end
