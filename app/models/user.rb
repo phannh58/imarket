@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: {maximum: 255},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
 
+  ATTRIBUTES_PARAMS = [:full_name, :email, :password, :password_confirmation,
+    :avatar]
   has_secure_password
 
   def generate_authentication_token!

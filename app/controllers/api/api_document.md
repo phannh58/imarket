@@ -8,12 +8,12 @@
 
 **Param request:**
 
-  * `session[email]`, type: string
-  * `session[password]` type: string
+  * `session[email]`, type: string, presence: true
+  * `session[password]`, type: string, presence: true
 
 **Request example:**
 
-  * `GET: http://localhost:3000/api/sessions`
+  * `POST: {"session": {"email": "tran.xuan.thang@framgia.com", "password": "12345678"}`
 
 **Response:**
 
@@ -27,11 +27,11 @@
 
 **Param request:**
 
-  * `Authorization`, type: string <In Headers of request>
+  * `Authorization`, type: string, presence: true (In Headers of request)
 
 **Request example:**
 
-  * `GET: http://localhost:3000/api/sessions/1`
+  * `DELETE: http://localhost:3000/api/sessions/1`
 
 **Response:**
 
@@ -65,11 +65,11 @@
 
 **Param request:**
 
-  * `store_type_id`, type: integer
+  * `store_type_id`, type: integer, presence: true
 
 **Request example:**
 
-  * `GET: http://localhost:3000/api/stores.json?store_type_id=1`
+  * `GET: {"store_type_id": 1}`
 
 **Response:**
 
@@ -95,5 +95,73 @@
 **Response:**
 
   * `{"categories":[{"id":1,"name":"culpa"},{"id":2,"name":"neque"},{"id":3,"name":"neque"},{"id":4,"name":"neque"},{"id":5,"name":"neque"},{"id":6,"name":"neque"}]}`
+
+--------------
+##4. User
+
+### Show user information
+
+**URL:** <http://localhost:3000/api/users/1>
+
+**Method: GET **
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+
+**Request example:**
+
+  * `GET: http://localhost:3000/api/users/1`
+
+**Response:**
+
+  * `{ "id": 1, "full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password_digest": "$2a$10$DaBvSpp0hCcV4WoA9g2ideAnlvHwlnSm6zj2vaxPcaNRG4FTZ7sbG", "avatar": null, "auth_token": "ZkEqEXmswb-5kzkTDEcy", "created_at": "2016-07-26T03:53:13.000Z", "updated_at": "2016-07-26T06:28:49.671Z" }`
+
+--------------
+### Signup
+
+**URL:** <http://localhost:3000/api/users>
+
+**Method: POST **
+
+**Param request:**
+
+  * `user[full_name]`, type: string, presence: true, length: {maximum: 50}
+  * `user[email]`, type: string, presence: true, length: {maximum: 255}
+  * `user[password]`, type: string, presence: true, length: {minimum: 6}
+  * `user[password_confirmation]`, type: string, presence: true, length: {minimum: 6}
+  * `user[avata]`, type: string
+
+**Request example:**
+
+  * `POST: {"user": {"full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password": "12345678", "password_confirmation": "12345678"}}`
+
+**Response:**
+
+  * `{ "id": 1, "full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password_digest": "$2a$10$DaBvSpp0hCcV4WoA9g2ideAnlvHwlnSm6zj2vaxPcaNRG4FTZ7sbG", "avatar": null, "auth_token": "ZkEqEXmswb-5kzkTDEcy", "created_at": "2016-07-26T03:53:13.000Z", "updated_at": "2016-07-26T06:28:49.671Z" }`
+
+--------------
+### Update
+
+**URL:** <http://localhost:3000/api/users/1>
+
+**Method: PATCH **
+
+**Param request:**
+
+  * `user[full_name]`, type: string, presence: true, length: {maximum: 50}
+  * `user[email]`, type: string, presence: true, length: {maximum: 255}
+  * `user[password]`, type: string, presence: true, length: {minimum: 6}
+  * `user[password_confirmation]`, type: string, presence: true, length: {minimum: 6}
+  * `user[avata]`, type: string
+  * `Authorization`, type: string, presence: true (In Headers of request)
+
+**Request example:**
+
+  * `PATCH: {"user": {"full_name": "Tran Xuan Thang Rau", "email": "tran.xuan.thang@framgia.com", "password": "12345678", "password_confirmation": "12345678"}}`
+
+**Response:**
+
+  * `{ "id": 1, "full_name": "Tran Xuan Thang Rau", "email": "tran.xuan.thang@framgia.com", "password_digest": "$2a$10$DaBvSpp0hCcV4WoA9g2ideAnlvHwlnSm6zj2vaxPcaNRG4FTZ7sbG", "avatar": null, "auth_token": "ZkEqEXmswb-5kzkTDEcy", "created_at": "2016-07-26T03:53:13.000Z", "updated_at": "2016-07-26T06:28:49.671Z" }`
 
 --------------
