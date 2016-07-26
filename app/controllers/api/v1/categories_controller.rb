@@ -1,4 +1,4 @@
-class Api::V1::CategoriesController < ApplicationController
+class Api::V1::CategoriesController < Api::ApplicationController
   before_action :load_store, only: :index
 
   def index

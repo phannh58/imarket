@@ -21,4 +21,18 @@
 
 en:
   hello: "Hello world"
-  api: "Framgia iMarket API"
+  application:
+    api:
+      title: "Framgia iMarket API"
+  not_found: "Not found store type!"
+  concerns:
+    authenticable:
+      authenticate_with_token!:
+        not_authenticated: "Not authenticated"
+  api:
+    v1:
+      sessions:
+        create:
+          error_login: "Invalid email or password"
+        destroy:
+          error_logout: "Invalid id of user or authorization"
