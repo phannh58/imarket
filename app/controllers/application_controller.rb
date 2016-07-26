@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   def api
     str = File.open("#{Rails.root}/app/controllers/api/api_document.md").read
     str = BlueCloth.new(str).to_html
-    html = to_html str, t("api")
+    html = to_html str, t(".title")
     render text: html.html_safe
   end
 
