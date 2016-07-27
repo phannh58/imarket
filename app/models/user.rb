@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   validates :auth_token, uniqueness: true
   validates :full_name, presence: true, length: {maximum: 50}
   validates :email, presence: true, length: {maximum: 255},
-    format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
+    format: {with: VALID_EMAIL_REGEX},
+    uniqueness: {scope: :uid, case_sensitive: false}
 
   ATTRIBUTES_PARAMS = [:full_name, :email, :password, :password_confirmation,
     :avatar]
@@ -37,6 +38,25 @@ class User < ActiveRecord::Base
         user.errors.add :message, I18n.t("application.api.wrong_access_token")
       end
 
+      return user
+    end
+
+    def authenticate_user_from_google access_token
+      user = User.new
+      response = HTTParty.get(Settings.user_url,
+        headers: {"Authorization" => "OAuth #{access_token}"})
+      if response["error"].nil?
+        uhash = Hash.new
+        uhash[:provider] = Settings.google_provider
+        uhash[:info] = Hash.new
+        uhash[:info][:uid] = response["id"]
+        uhash[:info][:full_name] = response["name"]
+        uhash[:info][:email] = response["email"]
+        uhash[:info][:avatar] = response["picture"]
+        user = User.apply_auth uhash
+      else
+        user.errors.add :message, I18n.t("application.api.wrong_access_token")
+      end
       return user
     end
   end

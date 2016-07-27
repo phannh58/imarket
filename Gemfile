@@ -12,6 +12,7 @@ gem "jbuilder", "~> 2.0"
 gem "cancancan"
 gem "devise"
 gem "koala"
+gem "httparty"
 gem "sdoc", "~> 0.4.0", group: :doc
 gem "active_model_serializers", "~> 0.8.0"
 gem "config"
