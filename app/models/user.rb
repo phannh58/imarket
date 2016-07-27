@@ -18,4 +18,39 @@ class User < ActiveRecord::Base
       self.auth_token = Devise.friendly_token
     end while self.class.exists? auth_token: auth_token
   end
+
+  class << self
+    def authenticate_user_from_facebook access_token
+      user = User.new
+      graph = Koala::Facebook::API.new access_token
+      begin
+        profile = graph.get_object Settings.facebook_field
+        uhash = Hash.new
+        uhash[:provider] = Settings.facebook_provider
+        uhash[:info] = Hash.new
+        uhash[:info][:uid] = profile["id"]
+        uhash[:info][:full_name] = profile["name"]
+        uhash[:info][:email] = profile["email"]
+        uhash[:info][:avatar] = profile["picture"]["data"]["url"]
+        user = User.apply_auth uhash
+      rescue Koala::Facebook::AuthenticationError
+        user.errors.add :message, I18n.t("application.api.wrong_access_token")
+      end
+
+      return user
+    end
+  end
+
+  private
+  class << self
+    def apply_auth uhash
+      User.where(uid: uhash[:info][:uid], provider: uhash[:provider])
+        .first_or_create do |user|
+        user.full_name = uhash[:info][:full_name]
+        user.password = Devise.friendly_token[0, 20]
+        user.email = uhash[:info][:email]
+        user.avatar = uhash[:info][:avatar]
+      end
+    end
+  end
 end
