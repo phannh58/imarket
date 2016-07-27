@@ -21,14 +21,10 @@
 
 en:
   hello: "Hello world"
+  not_authenticated: "Not authenticated"
   application:
     api:
       title: "Framgia iMarket API"
-  not_found: "Not found store type!"
-  concerns:
-    authenticable:
-      authenticate_with_token!:
-        not_authenticated: "Not authenticated"
   api:
     v1:
       sessions:
