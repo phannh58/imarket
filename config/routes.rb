@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: "json"} do
     scope module: :v1 do
       get "login/facebook" => "social#facebook"
+      get "login/google" => "social#google"
       resources :users, only: [:show, :create, :update]
       resources :sessions, only: [:create, :destroy]
       resources :commerce_centers, only: :show
