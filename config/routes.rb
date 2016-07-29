@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "application#api"
   get "api_document" => "application#api"
 
   devise_for :users
