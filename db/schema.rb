@@ -111,6 +111,8 @@ ActiveRecord::Schema.define(version: 20160719034921) do
     t.string   "email",           limit: 255
     t.string   "password_digest", limit: 255
     t.string   "avatar",          limit: 255
+    t.datetime "birth_day"
+    t.string   "phone_number",    limit: 255
     t.string   "auth_token",      limit: 255, default: ""
     t.string   "provider",        limit: 255
     t.string   "uid",             limit: 255

@@ -30,6 +30,7 @@
     *status: 422*
 
 --------------
+
 #### Logout
 **URL:** <https://imarket-api.herokuapp.com/api/sessions/1>
 
@@ -206,6 +207,54 @@
   * `{"categories":[{"id":1,"name":"culpa"},{"id":2,"name":"neque"},{"id":3,"name":"neque"},{"id":4,"name":"neque"},{"id":5,"name":"neque"},{"id":6,"name":"neque"}]}`
 
 --------------
+
+### Show events in a store
+
+**URL:** <https://imarket-api.herokuapp.com/api/stores/1/events>
+
+**Method: GET **
+
+**Param request:**
+
+  * `store_id`, type: integer
+
+**Request example:**
+
+  * `GET: https://imarket-api.herokuapp.com/api/stores/:store_id/events`
+
+  * `GET: https://imarket-api.herokuapp.com/api/stores/1/events`
+
+**Response:**
+
+  * {
+    "events":
+    [
+      {
+        "id": 1,
+        "name": "event 1",
+        "content": null,
+        "start_event": "2016-09-09",
+        "finish_event": "2016-09-20",
+        "store": {
+          "id": 1,
+          "name": "store 1"
+        }
+      },
+      {
+        "id": 2,
+        "name": "event 2",
+        "content": "this is event 2 in store",
+        "start_event": "2016-09-09",
+        "finish_event": "2016-09-20",
+        "store": {
+          "id": 1,
+          "name": "store 1"
+        }
+      }
+    ]
+  }
+
+--------------
 ##4. User
 
 ### Show user information
@@ -227,7 +276,7 @@
 
 **Response:**
 
-  * `{ "id": 1, "full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password_digest": "$2a$10$DaBvSpp0hCcV4WoA9g2ideAnlvHwlnSm6zj2vaxPcaNRG4FTZ7sbG", "avatar": null, "auth_token": "ZkEqEXmswb-5kzkTDEcy", "created_at": "2016-07-26T03:53:13.000Z", "updated_at": "2016-07-26T06:28:49.671Z" }`
+  * `{ "id": 1, "full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password_digest": "$2a$10$DaBvSpp0hCcV4WoA9g2ideAnlvHwlnSm6zj2vaxPcaNRG4FTZ7sbG", "avatar": null, "phone_number": "0123456789", "birth_day": "1989-09-03", "auth_token": "ZkEqEXmswb-5kzkTDEcy", "created_at": "2016-07-26T03:53:13.000Z", "updated_at": "2016-07-26T06:28:49.671Z" }`
 
 --------------
 ### Update
@@ -243,6 +292,7 @@
   * `user[password]`, type: string, presence: true, length: {minimum: 6}
   * `user[password_confirmation]`, type: string, presence: true, length: {minimum: 6}
   * `user[avata]`, type: string
+  * `user[phone_number]`, type: string, length: {minimun: 10, maximum: 11}
   * `Authorization`, type: string, presence: true (In Headers of request)
 
 **Request example:**
@@ -253,7 +303,7 @@
 
   * **Success**
 
-    `{ "id": 1, "full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password_digest": "$2a$10$DaBvSpp0hCcV4WoA9g2ideAnlvHwlnSm6zj2vaxPcaNRG4FTZ7sbG", "avatar": null, "auth_token": "ZkEqEXmswb-5kzkTDEcy", "created_at": "2016-07-26T03:53:13.000Z", "updated_at": "2016-07-26T06:28:49.671Z" }`
+    `{ "id": 1, "full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password_digest": "$2a$10$DaBvSpp0hCcV4WoA9g2ideAnlvHwlnSm6zj2vaxPcaNRG4FTZ7sbG", "avatar": null, "phone_number": "0123456789", "birth_day": "1989-09-03", "auth_token": "ZkEqEXmswb-5kzkTDEcy", "created_at": "2016-07-26T03:53:13.000Z", "updated_at": "2016-07-26T06:28:49.671Z" }`
 
     *status: 200*
 

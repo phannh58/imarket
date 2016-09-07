@@ -1,8 +1,8 @@
 class Api::V1::UsersController < Api::ApplicationController
-  before_action :authenticate_with_token!, only: :update
+  before_action :authenticate_with_token!, only: [:update, :show]
   respond_to :json
 
-   def show
+  def show
     respond_with User.find params[:id]
   end
 

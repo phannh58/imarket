@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     uniqueness: {scope: :uid, case_sensitive: false}
 
   ATTRIBUTES_PARAMS = [:full_name, :email, :password, :password_confirmation,
-    :avatar]
+    :avatar, :birth_day, :phone_number]
   has_secure_password
 
   def generate_authentication_token!
