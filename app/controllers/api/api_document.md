@@ -147,8 +147,35 @@
 
 --------------
 ##2. Commerce Center
-#### Show commerce center information
+
+### Show list Commerce Center
+
 **URL:** <https://imarket-api.herokuapp.com/api/commerce_centers>
+
+**Method: GET **
+
+**Param request:**
+
+  * `params[:search]`, type: string
+
+**Request example:**
+
+  * `GET: https://imarket-api.herokuapp.com/api/commerce_centers?search='string'`
+
+**Response:**
+  * `search=`
+
+    * `{"commerce_centers":[{"id":3,"name":"Media-mart"},{"id":2,"name":"Metro Thang Long"},{"id":1,"name":"Big C Thang Long"}]}`
+
+  * `search=Metro`
+
+    * `{"commerce_centers":[{"id":2,"name":"Metro Thang Long"}]}`
+
+
+--------------
+
+#### Show commerce center information
+**URL:** <https://imarket-api.herokuapp.com/api/commerce_centers/1>
 
 **Method: GET**
 
@@ -255,7 +282,74 @@
   }
 
 --------------
-##4. User
+
+##4. Category
+
+### Show products in a category
+
+**URL:** <https://imarket-api.herokuapp.com/api/stores/1/categories/1>
+
+**Method: GET **
+
+**Param request:**
+
+  * `category_id`, type: integer
+
+**Request example:**
+
+  * `GET: https://imarket-api.herokuapp.com/api/stores/1/categories/:category_id`
+
+  * `GET: https://imarket-api.herokuapp.com/api/stores/1/categories/1`
+
+**Response:**
+
+  * **Success**
+
+    `{"categories":[{"id":1,"name":"product 1","price":30000000,"quantity":2,"product_code":"MSP1","sale_off":0},{"id":2,"name":"product 2","price":100000000,"quantity":3,"product_code":"MSP2","sale_off":0}]}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 422*
+
+--------------
+
+### Show information for product
+
+**URL:** <https://imarket-api.herokuapp.com/api/categories/1/products/1>
+
+**Method: GET **
+
+**Param request:**
+
+  * `product_id`, type: integer
+
+**Request example:**
+
+  * `GET: https://imarket-api.herokuapp.com/api/categories/1/products/:product_id`
+
+  * `GET: https://imarket-api.herokuapp.com/api/categories/1/products/1`
+
+**Response:**
+
+  * **Success**
+
+    `{"product":{"id":1,"name":"product 1","price":30000000,"quantity":2,"product_code":"MSP1","sale_off":0}}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 422*
+
+--------------
+
+##5. User
 
 ### Show user information
 

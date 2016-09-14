@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20160719034921) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
+    t.string   "avatar",     limit: 255
     t.integer  "store_id",   limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -55,10 +56,11 @@ ActiveRecord::Schema.define(version: 20160719034921) do
   create_table "products", force: :cascade do |t|
     t.string   "name",         limit: 255
     t.text     "description",  limit: 65535
-    t.string   "image",        limit: 255
+    t.string   "avatar",       limit: 255
     t.string   "product_code", limit: 255
     t.integer  "quantity",     limit: 4
     t.decimal  "price",                      precision: 10, default: 0
+    t.integer  "sale_off",     limit: 4,                    default: 0
     t.integer  "category_id",  limit: 4
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false

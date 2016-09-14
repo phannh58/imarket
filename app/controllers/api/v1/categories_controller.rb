@@ -1,6 +1,7 @@
 class Api::V1::CategoriesController < Api::ApplicationController
+  load_resource
   before_action :load_store, only: :index
-  before_action :load_category, only: :show
+  # before_action :load_category, only: :show
 
   def index
     @categories = @store.categories
@@ -17,7 +18,7 @@ class Api::V1::CategoriesController < Api::ApplicationController
     @store = Store.find_by id: params[:store_id]
   end
 
-  def load_category
-    @category = Category.find_by id: params[:id]
-  end
+  # def load_category
+  #   @category = Category.find_by id: params[:id]
+  # end
 end
