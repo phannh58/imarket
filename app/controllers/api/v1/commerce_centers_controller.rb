@@ -12,7 +12,16 @@ class Api::V1::CommerceCentersController < Api::ApplicationController
     end
   end
 
+  def create
+
+  end
+
   def show
     render json: @commerce_center
+  end
+
+  private
+  def commerce_center_params
+    params.require(:commerce_center).permit :name, :image
   end
 end

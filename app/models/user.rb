@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: {maximum: 255},
     format: {with: VALID_EMAIL_REGEX},
     uniqueness: {scope: :uid, case_sensitive: false}
+  mount_uploader :avatar, PhotoUploader
 
   ATTRIBUTES_PARAMS = [:full_name, :email, :password, :password_confirmation,
     :avatar, :birth_day, :phone_number]

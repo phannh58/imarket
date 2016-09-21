@@ -13,4 +13,9 @@ class Api::V1::StoresController < Api::ApplicationController
   def show
     respond_with Store.find params[:id]
   end
+
+  def store_param
+    params.require(:store).permit :name, :image, :commerce_center_id, :store_code,
+      :store_type
+  end
 end

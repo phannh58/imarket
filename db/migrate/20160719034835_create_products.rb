@@ -3,7 +3,7 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :name
       t.text :description
-      t.string :avatar
+      t.string :photo
       t.string :product_code
       t.integer :quantity
       t.decimal :price, default: 0.0

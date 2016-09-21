@@ -2,7 +2,7 @@ class CreateCategories < ActiveRecord::Migration
   def change
     create_table :categories do |t|
       t.string :name
-      t.string :avatar
+      t.string :image
       t.references :store, index: true, foreign_key: true
 
       t.timestamps null: false
