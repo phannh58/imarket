@@ -31,3 +31,7 @@ group :development do
   gem "web-console", "~> 2.0"
   gem "spring"
 end
+
+group :production do
+  gem "pg", "0.17.1"
+end

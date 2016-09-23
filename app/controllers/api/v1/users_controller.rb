@@ -1,5 +1,6 @@
 class Api::V1::UsersController < Api::ApplicationController
-  before_action :authenticate_with_token!, only: [:update, :show]
+  # before_action :authenticate_with_token!, only: [:update, :destroy, :show]
+  load_resource
   respond_to :json
 
   def show
@@ -7,20 +8,19 @@ class Api::V1::UsersController < Api::ApplicationController
   end
 
   def create
-    user = User.new user_params
-    if user.save
-      render json: user, status: :created, location: [:api, user]
+    @user = User.new user_params
+    if @user.save
+      render json: @user, status: :created, location: [:api, @user]
     else
-      render json: {errors: user.errors}, status: :unprocessable_entity
+      render json: {errors: @user.errors}, status: :unprocessable_entity
     end
   end
 
   def update
-    user = current_user
-    if user.update_attributes user_params
-      render json: user, status: :ok, location: [:api, user]
+    if @user.update_attributes user_params
+      render json: @user, status: :ok, location: [:api, @user]
     else
-      render json: {errors: user.errors}, status: :unprocessable_entity
+      render json: {errors: @user.errors}, status: :unprocessable_entity
     end
   end
 

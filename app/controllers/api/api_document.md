@@ -2,7 +2,7 @@
 
 ##1. Login/Logout/Register
 #### Login
-**URL:** <https://imarket-api.herokuapp.com/api/sessions>
+**URL:** [api/sessions](api/sessions)
 
 **Method: POST**
 
@@ -32,7 +32,7 @@
 --------------
 
 #### Logout
-**URL:** <https://imarket-api.herokuapp.com/api/sessions/1>
+**URL:** [api/sessions](api/sessions/1)
 
 **Method: DELETE**
 
@@ -42,7 +42,7 @@
 
 **Request example:**
 
-  * `DELETE: https://imarket-api.herokuapp.com/api/sessions/1`
+  * `DELETE: https://imarketv1.herokuapp.com/api/sessions/1`
 
 **Response:**
 
@@ -59,7 +59,7 @@
 --------------
 ### Register
 
-**URL:** <https://imarket-api.herokuapp.com/api/users>
+**URL:** [api/users](api/users)
 
 **Method: POST **
 
@@ -91,7 +91,7 @@
 
 --------------
 #### Login Facebook
-**URL:** <https://imarket-api.herokuapp.com/login/facebook>
+**URL:** [api/social](api/login/google)
 
 **Method: GET**
 
@@ -101,7 +101,7 @@
 
 **Request example:**
 
-  * `GET: https://imarket-api.herokuapp.com/api/login/facebook`
+  * `GET: https://imarketv1.herokuapp.com/api/login/facebook`
 
 **Response:**
 
@@ -119,7 +119,8 @@
 
 --------------
 #### Login Google
-**URL:** <https://imarket-api.herokuapp.com/api/login/google>
+
+**URL:** [api/social](api/login/google)
 
 **Method: GET**
 
@@ -129,7 +130,7 @@
 
 **Request example:**
 
-  * `GET: https://imarket-api.herokuapp.com/api/login/google`
+  * `GET: https://imarketv1.herokuapp.com/api/login/google`
 
 **Response:**
 
@@ -148,9 +149,70 @@
 --------------
 ##2. Commerce Center
 
+### Create new Commerce Center
+
+**URL:** [api/commerce_centers](api/commerce_centers)
+
+**Method: POST **
+
+**Param request:**
+
+  * `auth_token`, type: string
+  * `name`, type: string
+
+**Request example:**
+
+  * `POST: https://imarketv1.herokuapp.com/api/commerce_centers`
+  * `params: { "auth_token": "EjBV_mV-d9GmYxmxRdcP", "commerce_center": { "name": "Ecomart" } }`
+
+**Response:**
+  * **Success**
+
+    `{"commerce_center":{"id":4,"name":"Ecomart","image":{"image":{"url":null}}}}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 422*
+
+--------------
+
+### Update Commerce Center
+
+**URL:** [api/commerce_centers](api/commerce_center/1)
+
+**Method: PUT **
+
+**Param request:**
+
+  * `auth_token`, type: string
+  * `name`, type: string
+
+**Request example:**
+
+  * `params: { "auth_token": "EjBV_mV-d9GmYxmxRdcP", "commerce_center": { "name": "Ecomart Thang Long" } }`
+
+**Response:**
+  * **Success**
+
+    `{"commerce_center":{"id":4,"name":"Ecomart Thang Long","image":{"image":{"url":null}}}}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 422*
+
+--------------
+
 ### Show list Commerce Center
 
-**URL:** <https://imarket-api.herokuapp.com/api/commerce_centers>
+**URL:** [api/commerce_centers](api/commerce_centers)
 
 **Method: GET **
 
@@ -160,7 +222,7 @@
 
 **Request example:**
 
-  * `GET: https://imarket-api.herokuapp.com/api/commerce_centers?search='string'`
+  * `GET: https://imarketv1.herokuapp.com/api/commerce_centers?search='string'`
 
 **Response:**
   * `search=`
@@ -175,7 +237,7 @@
 --------------
 
 #### Show commerce center information
-**URL:** <https://imarket-api.herokuapp.com/api/commerce_centers/1>
+**URL:** [api/commerce_centers](api/commerce_centers/1)
 
 **Method: GET**
 
@@ -185,7 +247,7 @@
 
 **Request example:**
 
-  * `GET: https://imarket-api.herokuapp.com/api/commerce_centers/1`
+  * `GET: https://imarketv1.herokuapp.com/api/commerce_centers/1`
 
 **Response:**
 
@@ -194,7 +256,7 @@
 --------------
 #### Search stores with a store_type
 
-**URL:** <https://imarket-api.herokuapp.com/api/stores>
+**URL:** [api/stores](api/stores)
 
 **Method: GET**
 
@@ -204,7 +266,7 @@
 
 **Request example:**
 
-  * `GET: https://imarket-api.herokuapp.com/api/stores?store_type_id=1`
+  * `GET: https://imarketv1.herokuapp.com/api/stores?store_type_id=1`
 
 **Response:**
 
@@ -215,7 +277,7 @@
 
 ### Show categories in a store
 
-**URL:** <https://imarket-api.herokuapp.com/api/stores/1/categories>
+**URL:** [api/categories](api/stores/1/categories)
 
 **Method: GET **
 
@@ -225,9 +287,9 @@
 
 **Request example:**
 
-  * `GET: https://imarket-api.herokuapp.com/api/stores/:store_id/categories`
+  * `GET: https://imarketv1.herokuapp.com/api/stores/:store_id/categories`
 
-  * `GET: https://imarket-api.herokuapp.com/api/stores/1/categories`
+  * `GET: https://imarketv1.herokuapp.com/api/stores/1/categories`
 
 **Response:**
 
@@ -237,7 +299,7 @@
 
 ### Show events in a store
 
-**URL:** <https://imarket-api.herokuapp.com/api/stores/1/events>
+**URL:** [api/stores](api/stores/1/events)
 
 **Method: GET **
 
@@ -247,9 +309,9 @@
 
 **Request example:**
 
-  * `GET: https://imarket-api.herokuapp.com/api/stores/:store_id/events`
+  * `GET: https://imarketv1.herokuapp.com/api/stores/:store_id/events`
 
-  * `GET: https://imarket-api.herokuapp.com/api/stores/1/events`
+  * `GET: https://imarketv1.herokuapp.com/api/stores/1/events`
 
 **Response:**
 
@@ -287,7 +349,7 @@
 
 ### Show products in a category
 
-**URL:** <https://imarket-api.herokuapp.com/api/stores/1/categories/1>
+**URL:** [api/products](api/categories/1/products)
 
 **Method: GET **
 
@@ -297,9 +359,9 @@
 
 **Request example:**
 
-  * `GET: https://imarket-api.herokuapp.com/api/stores/1/categories/:category_id`
+  * `GET: https://imarketv1.herokuapp.com/api/stores/1/categories/:category_id`
 
-  * `GET: https://imarket-api.herokuapp.com/api/stores/1/categories/1`
+  * `GET: https://imarketv1.herokuapp.com/api/stores/1/categories/1`
 
 **Response:**
 
@@ -319,7 +381,7 @@
 
 ### Show information for product
 
-**URL:** <https://imarket-api.herokuapp.com/api/categories/1/products/1>
+**URL:** [api/products](api/categories/1/products/1)
 
 **Method: GET **
 
@@ -329,9 +391,9 @@
 
 **Request example:**
 
-  * `GET: https://imarket-api.herokuapp.com/api/categories/1/products/:product_id`
+  * `GET: https://imarketv1.herokuapp.com/api/categories/1/products/:product_id`
 
-  * `GET: https://imarket-api.herokuapp.com/api/categories/1/products/1`
+  * `GET: https://imarketv1.herokuapp.com/api/categories/1/products/1`
 
 **Response:**
 
@@ -353,7 +415,7 @@
 
 ### Show user information
 
-**URL:** <https://imarket-api.herokuapp.com/api/users/1>
+**URL:** [api/users](api/users/1)
 
 **Method: GET **
 
@@ -364,9 +426,9 @@
 
 **Request example:**
 
-  * `GET: https://imarket-api.herokuapp.com/api/users/:id`
+  * `GET: https://imarketv1.herokuapp.com/api/users/:id`
 
-  * `GET: https://imarket-api.herokuapp.com/api/users/1`
+  * `GET: https://imarketv1.herokuapp.com/api/users/1`
 
 **Response:**
 
@@ -375,7 +437,7 @@
 --------------
 ### Update
 
-**URL:** <https://imarket-api.herokuapp.com/api/users/1>
+**URL:** [api/users](api/users/1)
 
 **Method: PATCH **
 

@@ -1,4 +1,5 @@
 class Api::V1::CategoriesController < Api::ApplicationController
+  before_action :authenticate_with_token!, only: [:create, :update]
   load_resource
   before_action :load_store, only: :index
 
@@ -7,9 +8,25 @@ class Api::V1::CategoriesController < Api::ApplicationController
     render json: @categories
   end
 
+  def create
+    @category = Category.new category_params
+    if @category.save
+      render json: @category, status: 200, location: [:api, @category]
+    else
+      render json: {errors: @category.errors}, status: 420
+    end
+  end
+
   def show
-    @products = @category.products
-    render json: @products
+    render json: @category
+  end
+
+  def update
+    if @category.update_attributes category_params
+      render json: @category, status: :ok, location: [:api, @category]
+    else
+      render json: {errors: @category.errors}, status: :unprocessable_entity
+    end
   end
 
   private
@@ -17,7 +34,7 @@ class Api::V1::CategoriesController < Api::ApplicationController
     @store = Store.find_by id: params[:store_id]
   end
 
-  def param_category
-    params.require(:category).permit :name, :image
+  def category_params
+    params.require(:category).permit :name, :image, :store_id
   end
 end

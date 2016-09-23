@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
+
+  include Authenticable
 
   def api
     str = File.open("#{Rails.root}/app/controllers/api/api_document.md").read

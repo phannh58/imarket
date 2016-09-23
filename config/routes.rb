@@ -7,11 +7,11 @@ Rails.application.routes.draw do
     scope module: :v1 do
       get "login/facebook" => "social#facebook"
       get "login/google" => "social#google"
-      resources :users, only: [:show, :create, :update]
+      resources :users, only: [:show, :create, :update, :destroy]
       resources :sessions, only: [:create, :destroy]
-      resources :commerce_centers, only: [:show, :index]
+      resources :commerce_centers
       resources :stores do
-        resources :categories, only: [:index, :show]
+        resources :categories, only: [:index, :show, :create]
         resources :events, only: :index
       end
       resources :categories, only: [:index, :show] do
