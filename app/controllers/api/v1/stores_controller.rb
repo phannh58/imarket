@@ -1,4 +1,6 @@
 class Api::V1::StoresController < Api::ApplicationController
+  load_resource
+  # before_action :authenticate_with_token!, only: [:create, :update]
   respond_to :json
 
   def index
@@ -14,7 +16,8 @@ class Api::V1::StoresController < Api::ApplicationController
     respond_with Store.find params[:id]
   end
 
-  def store_param
+  private
+  def store_params
     params.require(:store).permit :name, :image, :commerce_center_id, :store_code,
       :store_type
   end

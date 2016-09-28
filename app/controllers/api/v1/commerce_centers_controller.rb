@@ -1,5 +1,6 @@
 class Api::V1::CommerceCentersController < Api::ApplicationController
   load_resource
+  before_action :authenticate_with_token!, only: [:create, :update]
 
   def index
     if params[:search]
@@ -13,7 +14,20 @@ class Api::V1::CommerceCentersController < Api::ApplicationController
   end
 
   def create
+    @commerce_center = CommerceCenter.new commerce_center_params
+    if @commerce_center.save
+      render json: @commerce_center, status: 200, location: [:api, @commerce_center]
+    else
+      render json: {errors: @commerce_center.errors}, status: 422
+    end
+  end
 
+  def update
+    if @commerce_center.update_attributes commerce_center_params
+      render json: @commerce_center, status: :ok, location: [:api, @commerce_center]
+    else
+      render json: {errors: @commerce_center.errors}, status: :unprocessable_entity
+    end
   end
 
   def show
