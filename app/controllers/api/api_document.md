@@ -299,7 +299,7 @@
 
 ### Show events in a store
 
-**URL:** [api/stores](api/stores/1/events)
+**URL:** [api/events](api/stores/1/events)
 
 **Method: GET **
 
