@@ -13,13 +13,23 @@
 
 **Request example:**
 
-  * `POST: {"session": {"email": "tran.xuan.thang@framgia.com", "password": "12345678"}`
+  * `POST: {"session": {"email": "tran.xuan.thang@framgia.com", "password": "12345678"} }`
 
 **Response:**
 
   * **Success**
 
-    `{ "id": 1, "full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password_digest": "$2a$10$DaBvSpp0hCcV4WoA9g2ideAnlvHwlnSm6zj2vaxPcaNRG4FTZ7sbG", "avatar": null, "auth_token": "ZkEqEXmswb-5kzkTDEcy", "created_at": "2016-07-26T03:53:13.000Z", "updated_at": "2016-07-26T06:28:49.671Z" }`
+    `{
+      "user": {
+        "id": 1,
+        "full_name": "Tran Xuan Thang",
+        "email": "tran.xuan.thang@framgia.com",
+        "avatar": "/uploads/user/avatar/1/file.png",
+        "birth_day": null,
+        "phone_number": "0165939206",
+        "auth_token": "ZQhYfFSgQpuCLu79c9sj"
+      }
+    }`
 
     *status: 200*
 
@@ -157,15 +167,16 @@
 
 **Param request:**
 
-  * `auth_token`, type: string
+  * `Authorization`, type: string, presence: true (In Headers of request)
   * `name`, type: string
 
 **Request example:**
 
   * `POST: https://imarketv1.herokuapp.com/api/commerce_centers`
-  * `params: { "auth_token": "EjBV_mV-d9GmYxmxRdcP", "commerce_center": { "name": "Ecomart" } }`
+  * `params: { "commerce_center": { "name": "Ecomart" } }`
 
 **Response:**
+
   * **Success**
 
     `{"commerce_center":{"id":4,"name":"Ecomart","image":{"image":{"url":null}}}}`
@@ -188,14 +199,15 @@
 
 **Param request:**
 
-  * `auth_token`, type: string
+  * `Authorization`, type: string, presence: true (In Headers of request)
   * `name`, type: string
 
 **Request example:**
 
-  * `params: { "auth_token": "EjBV_mV-d9GmYxmxRdcP", "commerce_center": { "name": "Ecomart Thang Long" } }`
+  * `params: { "commerce_center": { "name": "Ecomart Thang Long" } }`
 
 **Response:**
+
   * **Success**
 
     `{"commerce_center":{"id":4,"name":"Ecomart Thang Long","image":{"image":{"url":null}}}}`
@@ -225,6 +237,7 @@
   * `GET: https://imarketv1.herokuapp.com/api/commerce_centers?search='string'`
 
 **Response:**
+
   * `search=`
 
     * `{"commerce_centers":[{"id":3,"name":"Media-mart"},{"id":2,"name":"Metro Thang Long"},{"id":1,"name":"Big C Thang Long"}]}`
@@ -251,7 +264,65 @@
 
 **Response:**
 
-  * `{ "commerce_center": { "id": 1, "name": "Big C", "stores": [ { "id": 1, "name": "eos" }, { "id": 2, "name": "ut" }, { "id": 3, "name": "ut" }, { "id": 4, "name": "ut" }, { "id": 5, "name": "ut" }, { "id": 6, "name": "ut" }, { "id": 7, "name": "ut" }, { "id": 8, "name": "ut" }, { "id": 9, "name": "ut" }, { "id": 10, "name": "ut" }, { "id": 11, "name": "ut" }, { "id": 12, "name": "ut" } ], "store_types": [ { "id": 1, "name": "dolores", "stores": [ { "id": 1, "name": "eos" }, { "id": 2, "name": "ut" } ] }, { "id": 2, "name": "minima", "stores": [ { "id": 3, "name": "ut" }, { "id": 4, "name": "ut" } ] }, { "id": 3, "name": "minima", "stores": [ { "id": 5, "name": "ut" }, { "id": 6, "name": "ut" } ] }, { "id": 4, "name": "minima", "stores": [ { "id": 7, "name": "ut" }, { "id": 8, "name": "ut" } ] }, { "id": 5, "name": "minima", "stores": [ { "id": 9, "name": "ut" }, { "id": 10, "name": "ut" } ] }, { "id": 6, "name": "minima", "stores": [ { "id": 11, "name": "ut" }, { "id": 12, "name": "ut" } ] } ] } }`
+  *
+  `{
+    "commerce_centers": [
+      {
+        "id": 6,
+        "name": "garden",
+        "image": {
+          "image": {
+            "url": null
+          }
+        }
+      },
+      {
+        "id": 5,
+        "name": "Education",
+        "image": {
+          "image": {
+            "url": null
+          }
+        }
+      },
+      {
+        "id": 4,
+        "name": "abc123",
+        "image": {
+          "image": {
+            "url": null
+          }
+        }
+      },
+      {
+        "id": 3,
+        "name": "BigC",
+        "image": {
+          "image": {
+            "url": null
+          }
+        }
+      },
+      {
+        "id": 2,
+        "name": "Metra",
+        "image": {
+          "image": {
+            "url": null
+          }
+        }
+      },
+      {
+        "id": 1,
+        "name": "ĐHCN-ĐHQGHN",
+        "image": {
+          "image": {
+            "url": null
+          }
+        }
+      }
+    ]
+  }`
 
 --------------
 #### Search stores with a store_type
@@ -274,6 +345,86 @@
 
 --------------
 ##3. Store
+
+### Create new Store
+
+**URL:** [api/stores](api/stores)
+
+**Method: POST **
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `name`, type: string
+  * `store_code`, type: string
+  * `store_type`, type: string
+
+**Request example:**
+
+  * `POST: https://imarketv1.herokuapp.com/api/stores`
+  * `params: { "store": { "name": "Minh Cuong", "commerce_center_id": "2", "store_code": "CH1"} }`
+
+**Response:**
+
+  * **Success**
+
+    `{
+      "store": {
+        "id": 3,
+        "name": "Minh Cuong",
+        "store_code": "CH1"
+      }
+    }`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 402*
+
+--------------
+
+### Update Store
+
+**URL:** [api/stores](api/stores/1)
+
+**Method: PATCH **
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `name`, type: string
+  * `store_code`, type: string
+  * `store_type`, type: string
+
+**Request example:**
+
+  * `PATCH: https://imarketv1.herokuapp.com/api/stores/1`
+  * `params: { "store": { "name": "Minh Cuong 1", "store_code": "CH11"} }`
+
+**Response:**
+
+  * **Success**
+
+    `{
+      "store": {
+        "id": 1,
+        "name": "Minh Cuong 1",
+        "store_code": "CH11"
+      }
+    }`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 402*
+
+--------------
 
 ### Show categories in a store
 
@@ -315,7 +466,7 @@
 
 **Response:**
 
-  * {
+  * `{
     "events":
     [
       {
@@ -324,10 +475,6 @@
         "content": null,
         "start_event": "2016-09-09",
         "finish_event": "2016-09-20",
-        "store": {
-          "id": 1,
-          "name": "store 1"
-        }
       },
       {
         "id": 2,
@@ -335,13 +482,78 @@
         "content": "this is event 2 in store",
         "start_event": "2016-09-09",
         "finish_event": "2016-09-20",
-        "store": {
-          "id": 1,
-          "name": "store 1"
-        }
       }
     ]
-  }
+  }`
+
+--------------
+
+### Create new Event
+
+**URL:** [api/events](api/stores/1/events)
+
+**Method: POST **
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `name`, type: string
+  * `store_id`, type: string
+  * `start_event`, type: date
+  * `finish_event`, type: date
+
+**Request example:**
+
+  * `POST: https://imarketv1.herokuapp.com/api/stores/1/events`
+  * `params: { "event": {"name": "Tung Bung Khuyen Mai 123", "content": "Giam Gia 30% tat ca cac mat hang!!!sayohyeah", "start_event": "Thu, 29 Sep 2016", "finish_event": "Thu, 30 Sep 2016", "store_id": "1"} }`
+
+**Response:**
+
+  * **Success**
+
+    `{"event":{"id":1,"name":"Tung Bung Khuyen Mai 123","content":"Giam Gia 30% tat ca cac mat hang!!!sayohyeah","start_event":"2016-09-29T00:00:00.000Z","finish_event":"2016-09-30T00:00:00.000Z","store":{"id":1,"name":"Cừa Hàng 1","store_code":"CH1"}}}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 402*
+
+--------------
+
+### Update Event
+
+**URL:** [api/events](api/stores/1/events/1)
+
+**Method: PATCH **
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `name`, type: string
+  * `store_code`, type: string
+  * `store_type`, type: string
+
+**Request example:**
+
+  * `PATCH: https://imarketv1.herokuapp.com/api/stores/1/events/1`
+  * `params: { "event": {"name": "Tung Bung Khuyen Mai", "content": "Giam Gia 30% tat ca cac mat hang"} }`
+
+**Response:**
+
+  * **Success**
+
+    `{"event":{"id":24,"name":"Tung Bung Khuyen Mai","content":"Giam Gia 30% tat ca cac mat hang","start_event":"2016-09-29T00:00:00.000Z","finish_event":"2016-09-30T00:00:00.000Z","store":{"id":1,"name":"Cừa Hàng 1","store_code":"CH1"}}}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 402*
 
 --------------
 
@@ -432,7 +644,7 @@
 
 **Response:**
 
-  * `{ "id": 1, "full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password_digest": "$2a$10$DaBvSpp0hCcV4WoA9g2ideAnlvHwlnSm6zj2vaxPcaNRG4FTZ7sbG", "avatar": null, "phone_number": "0123456789", "birth_day": "1989-09-03", "auth_token": "ZkEqEXmswb-5kzkTDEcy", "created_at": "2016-07-26T03:53:13.000Z", "updated_at": "2016-07-26T06:28:49.671Z" }`
+  * `{ "id": 1, "full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "avatar": null, "phone_number": "0123456789", "birth_day": "1989-09-03", "auth_token": "ZkEqEXmswb-5kzkTDEcy" }`
 
 --------------
 ### Update
@@ -443,23 +655,32 @@
 
 **Param request:**
 
+  * `Authorization`, type: string, presence: true (In Headers of request)
   * `user[full_name]`, type: string, presence: true, length: {maximum: 50}
   * `user[email]`, type: string, presence: true, length: {maximum: 255}
   * `user[password]`, type: string, presence: true, length: {minimum: 6}
   * `user[password_confirmation]`, type: string, presence: true, length: {minimum: 6}
   * `user[avata]`, type: string
   * `user[phone_number]`, type: string, length: {minimun: 10, maximum: 11}
-  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `user[birth_day]`, type: date
 
 **Request example:**
 
-  * `PATCH: {"user": {"full_name": "Tran Xuan Thang Rau", "email": "tran.xuan.thang@framgia.com", "password": "12345678", "password_confirmation": "12345678"}}`
+  * `PATCH: { "user": { "avatar": "data:image/jpeg;base64,/9j/4gIcSUNDX1BST0ZJTEUAAQEAAAIMbGNtcwIQAABtbnRyUkdCIFhZWiAH3AABABkAAwApADlhY3NwQVBQTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLWxjbXMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApkZXNjAAAA/AAAAF5jcHJ0AAABXAAAAAt3dHB0AAABaAAAABRia3B0AAABfAAAABRyWFlaAAABkAAAABRnWFlaAAABpAAAABRiWFlaAAABuAAAABRyVFJDAAABzAAAAEBnVFJDAAABzAAAAEBiVFJDAAABzAAAAEBkZXNjAAAAAAAAAANjMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB0ZXh0AAAAAEZCAABYWVogAAAAAAAA9tYAAQAAAADTLVhZWiAAAAAAAAADFgAAAzMAAAKkWFlaIAAAAAAAAG+iAAA49QAAA5BYWVogAAAAAAAAYpkAALeFAAAY2lhZWiAAAAAAAAAkoAAAD4QAALbPY3VydgAAAAAAAAAaAA......", "birth_day": "08/11/1995", "phone_number": "01632203543"}}`
 
 **Response:**
 
   * **Success**
 
-    `{ "id": 1, "full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password_digest": "$2a$10$DaBvSpp0hCcV4WoA9g2ideAnlvHwlnSm6zj2vaxPcaNRG4FTZ7sbG", "avatar": null, "phone_number": "0123456789", "birth_day": "1989-09-03", "auth_token": "ZkEqEXmswb-5kzkTDEcy", "created_at": "2016-07-26T03:53:13.000Z", "updated_at": "2016-07-26T06:28:49.671Z" }`
+    `{
+      "id": 1,
+      "full_name": "Tran Xuan Thang",
+      "email": "tran.xuan.thang@framgia.com",
+      "avatar": "/uploads/user/avatar/2/file.jpeg",
+      "birth_day": "1995-11-08T00:00:00.000Z",
+      "phone_number": "01632203543",
+      "auth_token": "xzC9yBacx1Z4svzLKedJ",
+    }`
 
     *status: 200*
 

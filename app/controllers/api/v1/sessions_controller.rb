@@ -4,7 +4,6 @@ class Api::V1::SessionsController < Api::ApplicationController
     user = User.find_by email: params[:session][:email].try(:downcase)
     if user && user.authenticate(params[:session][:password])
       sign_in user, store: false
-      user.generate_authentication_token!
       user.save
       render json: user, status: :ok
     else
