@@ -1,6 +1,6 @@
 class Api::V1::StoresController < Api::ApplicationController
   load_resource
-  # before_action :authenticate_with_token!, only: [:create, :update]
+  before_action :authenticate_with_token!, only: [:create, :update]
   respond_to :json
 
   def index
@@ -10,6 +10,23 @@ class Api::V1::StoresController < Api::ApplicationController
       @stores = Store.all
     end
     render json: @stores
+  end
+
+  def create
+    @store = Store.new store_params
+    if @store.save
+      render json: @store, status: 200, location: [:api, @store]
+    else
+      render json: {errors: @store.errors}, status: 420
+    end
+  end
+
+  def update
+    if @store.update_attributes store_params
+      render json: @store, status: :ok, location: [:api, @store]
+    else
+      render json: {errors: @store.errors}, status: :unprocessable_entity
+    end
   end
 
   def show

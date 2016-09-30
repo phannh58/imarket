@@ -11,11 +11,11 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :destroy]
       resources :commerce_centers
       resources :stores do
-        resources :categories, only: [:index, :show, :create]
-        resources :events, only: :index
+        resources :categories
+        resources :events
       end
       resources :categories, only: [:index, :show] do
-        resources :products, only: [:index, :show]
+        resources :products
       end
     end
   end

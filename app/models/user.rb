@@ -6,10 +6,11 @@ class User < ActiveRecord::Base
 
   validates :auth_token, uniqueness: true
   validates :full_name, presence: true, length: {maximum: 50}
+  validates :phone_number, presence: true, length: {minimum: 10, maximum: 11}
   validates :email, presence: true, length: {maximum: 255},
     format: {with: VALID_EMAIL_REGEX},
     uniqueness: {scope: :uid, case_sensitive: false}
-  mount_uploader :avatar, PhotoUploader
+  mount_base64_uploader :avatar, PhotoUploader
 
   ATTRIBUTES_PARAMS = [:full_name, :email, :password, :password_confirmation,
     :avatar, :birth_day, :phone_number]

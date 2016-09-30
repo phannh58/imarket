@@ -1,7 +1,7 @@
 class Api::V1::UsersController < Api::ApplicationController
-  # before_action :authenticate_with_token!, only: [:update, :destroy, :show]
   load_resource
   respond_to :json
+  before_action :authenticate_with_token!, only: [:update, :destroy, :show]
 
   def show
     respond_with User.find params[:id]
@@ -26,6 +26,7 @@ class Api::V1::UsersController < Api::ApplicationController
 
   private
   def user_params
+    params[:user][:avatar] = set_param_image_base_64 params[:user][:avatar]
     params.require(:user).permit User::ATTRIBUTES_PARAMS
   end
 end
