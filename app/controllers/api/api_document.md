@@ -204,13 +204,13 @@
 
 **Request example:**
 
-  * `params: { "commerce_center": { "name": "Ecomart Thang Long" } }`
+  * `params: { "commerce_center": { "name": "DHCN", "image": "/9j/4AAQSkZJRgABAgEBLAEsAAD/4RhFRXhpZgAATU0AKgAAAAgABwESAAMAAAABAAEAAAEaAAUAAAABAAAAYgEbAAUAAAABAAAAagEoAAMAAAABAAIAAAExAAIAAAAcAAAAcgEyAAIAAAAUAAAAjodpAAQAAAABAAAApAAAANAALcbAAAAnEAAtxsAAACcQQWRvYmUgUGhvdG9zaG9wIENTMyBXaW5kb3dzADIwMTU6MDc6MjEgMTA6NTY6MDkAAAAAA6ABAAMAAAAB//8AAKACAAQAAAABAAACdqADAAQAAAABAAABYgAAAAAAAAAGAQMAAwAAAAEABgAAARoABQAAAAEAAAEeARsABQAAAAEAAAEmASgAAwAAAAEAAgAAAgEABAAAAAEAAAEuAgIABAAAAAEAABcPAAAAAAAAAEgAAAABAAAASAAAAAH/2P/gABBKRklGAAECAABIAEgAAP/tAAxBZG9iZV9DTQAC/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8V...... } }`
 
 **Response:**
 
   * **Success**
 
-    `{"commerce_center":{"id":4,"name":"Ecomart Thang Long","image":{"image":{"url":null}}}}`
+    `{"commerce_center":{"id":1,"name":"DHCN","image":"/uploads/commerce_center/image/1/file.png"}}`
 
     *status: 200*
 
@@ -264,65 +264,7 @@
 
 **Response:**
 
-  *
-  `{
-    "commerce_centers": [
-      {
-        "id": 6,
-        "name": "garden",
-        "image": {
-          "image": {
-            "url": null
-          }
-        }
-      },
-      {
-        "id": 5,
-        "name": "Education",
-        "image": {
-          "image": {
-            "url": null
-          }
-        }
-      },
-      {
-        "id": 4,
-        "name": "abc123",
-        "image": {
-          "image": {
-            "url": null
-          }
-        }
-      },
-      {
-        "id": 3,
-        "name": "BigC",
-        "image": {
-          "image": {
-            "url": null
-          }
-        }
-      },
-      {
-        "id": 2,
-        "name": "Metra",
-        "image": {
-          "image": {
-            "url": null
-          }
-        }
-      },
-      {
-        "id": 1,
-        "name": "ĐHCN-ĐHQGHN",
-        "image": {
-          "image": {
-            "url": null
-          }
-        }
-      }
-    ]
-  }`
+  * `{"commerce_center":{"id":1,"name":"ĐHCN-ĐHQGHN","image":null}}`
 
 --------------
 #### Search stores with a store_type
@@ -398,11 +340,12 @@
   * `name`, type: string
   * `store_code`, type: string
   * `store_type`, type: string
+  * `image`, type: string
 
 **Request example:**
 
   * `PATCH: https://imarketv1.herokuapp.com/api/stores/1`
-  * `params: { "store": { "name": "Minh Cuong 1", "store_code": "CH11"} }`
+  * `params: { "store": { "name": "Minh Cuong 1", "store_code": "CH11", "image": "/9j/4AAQSkZJRgABAgEBLAEsAAD/4RhFRXhpZgAATU0AKgAAAAgABwESAAMAAAABAAEAAAEaAAUAAAABAAAAYgEbAAUAAAABAAAAagEoAAMAAAABAAIAAAExAAIAAAAcAAAAcgEyAAIAAAAUAAAAjodpAAQAAAABAAAApAAAANAALcbAAAAnEAAtxsAAACcQQWRvYmUgUGhvdG9zaG9wIENTMyBXaW5kb3dzADIwMTU6MDc6MjEgMTA6NTY6MDkAAAAAA6ABAAMAAAAB//8AAKACAAQAAAABAAACdqADAAQAAAABAAABYgAAAAAAAAAGAQMAAwAAAAEABgAAARoABQAAAAEAAAEeARsABQAAAAEAAAEmASgAAwAAAAEAAgAAAgEABAAAAAEAAAEuAgIABAAAAAEAABcPAAAAAAAAAEgAAAABAAAASAAAAAH/2P/gABBKRklGAAECAABIAEgAAP/tAAxBZG9iZV9DTQAC/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAWgCgAwEiAAIRAQMRAf/dAAQAC.... } }`
 
 **Response:**
 
@@ -412,7 +355,13 @@
       "store": {
         "id": 1,
         "name": "Minh Cuong 1",
-        "store_code": "CH11"
+        "store_code": "CH11",
+        "image": "/uploads/store/image/1/file.png",
+        "commerce_center": {
+          "id": 1,
+          "name": "ĐHCN-ĐHQGHN",
+          "image": null
+        }
       }
     }`
 
@@ -559,6 +508,72 @@
 
 ##4. Category
 
+### Show information category
+
+**URL:** [api/categories](api/stores/1/categories/1)
+
+**Method: GET **
+
+**Param request:**
+
+  * `category_id`, type: integer
+
+**Request example:**
+
+  * `GET: https://imarketv1.herokuapp.com/api/stores/1/categories/:category_id`
+
+  * `GET: https://imarketv1.herokuapp.com/api/stores/1/categories/1`
+
+**Response:**
+
+  * **Success**
+
+    `{"category":{"id":1,"name":"Apple1","image":"/uploads/category/image/1/file.png","store":{"id":1,"name":"Cửa Hàng số 1","store_code":"CH1","image":"/uploads/store/image/1/file.png","commerce_center":{"id":1,"name":"DHCN","image":"/uploads/commerce_center/image/1/file.png"}}}}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 422*
+
+--------------
+
+### Update Category
+
+**URL:** [api/categories](api/stores/1/categories/1)
+
+**Method: PATCH **
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `name`, type: string
+  * `image`, type: string
+
+**Request example:**
+
+  * `PATCH: https://imarketv1.herokuapp.com/api/stores/1/categories/1`
+  * `params: { "category": { "name": "Apple1", "image": "/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAFoAtADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQo........"} }`
+
+**Response:**
+
+  * **Success**
+
+    `{"category":{"id":1,"name":"Apple1","image":"/uploads/category/image/1/file.png","store":{"id":1,"name":"Cửa Hàng số 1","store_code":"CH1","image":"/uploads/store/image/1/file.png","commerce_center":{"id":1,"name":"DHCN","image":"/uploads/commerce_center/image/1/file.png"}}}}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 402*
+
+--------------
+
+
 ### Show products in a category
 
 **URL:** [api/products](api/categories/1/products)
@@ -579,7 +594,7 @@
 
   * **Success**
 
-    `{"categories":[{"id":1,"name":"product 1","price":30000000,"quantity":2,"product_code":"MSP1","sale_off":0},{"id":2,"name":"product 2","price":100000000,"quantity":3,"product_code":"MSP2","sale_off":0}]}`
+    `{ "categories":[{"id":1,"name":"product 1","price":30000000,"quantity":2,"product_code":"MSP1","sale_off":0},{"id":2,"name":"product 2","price":100000000,"quantity":3,"product_code":"MSP2","sale_off":0}] }`
 
     *status: 200*
 
@@ -673,13 +688,15 @@
   * **Success**
 
     `{
-      "id": 1,
-      "full_name": "Tran Xuan Thang",
-      "email": "tran.xuan.thang@framgia.com",
-      "avatar": "/uploads/user/avatar/2/file.jpeg",
-      "birth_day": "1995-11-08T00:00:00.000Z",
-      "phone_number": "01632203543",
-      "auth_token": "xzC9yBacx1Z4svzLKedJ",
+      "user": {
+        "id": 1,
+        "full_name": "Tran Xuan Thang",
+        "email": "tran.xuan.thang@gmail.com",
+        "avatar": "/uploads/user/avatar/2/file.png",
+        "birth_day": "1995-11-08T00:00:00.000Z",
+        "phone_number": "01632203543",
+        "auth_token": "qffcZXwDxBxigsxLQaxF"
+      }
     }`
 
     *status: 200*

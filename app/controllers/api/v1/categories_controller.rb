@@ -35,6 +35,7 @@ class Api::V1::CategoriesController < Api::ApplicationController
   end
 
   def category_params
+    params[:category][:image] = set_param_image_base_64 params[:category][:image]
     params.require(:category).permit :name, :image, :store_id
   end
 end

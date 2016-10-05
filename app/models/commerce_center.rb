@@ -2,7 +2,7 @@ class CommerceCenter < ActiveRecord::Base
   belongs_to :district
   has_many :store_types
   has_many :stores
-  mount_uploader :image, PhotoUploader
+  mount_base64_uploader :image, PhotoUploader
 
   scope :search, ->search {where("name LIKE ?",
     "%#{search}%")}
