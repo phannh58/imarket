@@ -1,6 +1,6 @@
 class Api::V1::ProductsController < Api::ApplicationController
   load_resource
-  before_action :load_category, only: :index
+  before_action :load_category, only: [:index, :create, :update]
   before_action :authenticate_with_token!, only: [:create, :update]
 
   def show
@@ -15,7 +15,7 @@ class Api::V1::ProductsController < Api::ApplicationController
   def create
     @product = Product.new product_params
     if @product.save
-      render json: @product, status: 200, location: [:api, @product]
+      render json: @product, status: 200, location: [:api, @category, @product]
     else
       render json: {errors: @product.errors}, status: 420
     end
@@ -23,7 +23,7 @@ class Api::V1::ProductsController < Api::ApplicationController
 
   def update
     if @product.update_attributes product_params
-      render json: @product, status: :ok, location: [:api, @product]
+      render json: @product, status: :ok, location: [:api, @category, @product]
     else
       render json: {errors: @product.errors}, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class Api::V1::ProductsController < Api::ApplicationController
   end
 
   def product_params
-    params.require(:product).permit :name, :price, :quantity, :product_code,
-     :description, :category_id, :photo
+    params.require(:product).permit :name, :price, :quantity, :description,
+     :category_id, :photo
   end
 end

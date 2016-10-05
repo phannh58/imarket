@@ -4,10 +4,10 @@ class CreateProducts < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :photo
-      t.string :product_code
       t.integer :quantity
+      t.string :present_icon
       t.decimal :price, default: 0.0
-      t.integer :sale_off, default: 0
+      t.integer :promotion_percent, default: 0
       t.references :category, index: true, foreign_key: true
 
       t.timestamps null: false
