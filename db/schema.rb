@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719034921) do
+ActiveRecord::Schema.define(version: 20161006013744) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -54,10 +54,28 @@ ActiveRecord::Schema.define(version: 20160719034921) do
 
   add_index "events", ["store_id"], name: "index_events_on_store_id", using: :btree
 
+  create_table "floors", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.integer  "commerce_center_id", limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "floors", ["commerce_center_id"], name: "index_floors_on_commerce_center_id", using: :btree
+
+  create_table "image_products", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "image",      limit: 255
+    t.integer  "product_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "image_products", ["product_id"], name: "index_image_products_on_product_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "name",         limit: 255
     t.text     "description",  limit: 65535
-    t.string   "photo",        limit: 255
     t.string   "product_code", limit: 255
     t.integer  "quantity",     limit: 4
     t.decimal  "price",                      precision: 10, default: 0
@@ -96,18 +114,18 @@ ActiveRecord::Schema.define(version: 20160719034921) do
   add_index "store_users", ["user_id"], name: "index_store_users_on_user_id", using: :btree
 
   create_table "stores", force: :cascade do |t|
-    t.string   "name",               limit: 255
-    t.string   "image",              limit: 255
-    t.decimal  "latitude",                       precision: 10, scale: 6
-    t.decimal  "longtitude",                     precision: 10, scale: 6
-    t.string   "store_code",         limit: 255
-    t.integer  "store_type_id",      limit: 4
-    t.integer  "commerce_center_id", limit: 4
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
+    t.string   "name",          limit: 255
+    t.string   "image",         limit: 255
+    t.decimal  "latitude",                  precision: 10, scale: 6
+    t.decimal  "longtitude",                precision: 10, scale: 6
+    t.string   "store_code",    limit: 255
+    t.integer  "store_type_id", limit: 4
+    t.integer  "floor_id",      limit: 4
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
-  add_index "stores", ["commerce_center_id"], name: "index_stores_on_commerce_center_id", using: :btree
+  add_index "stores", ["floor_id"], name: "index_stores_on_floor_id", using: :btree
   add_index "stores", ["store_type_id"], name: "index_stores_on_store_type_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -128,10 +146,12 @@ ActiveRecord::Schema.define(version: 20160719034921) do
   add_foreign_key "commerce_centers", "districts"
   add_foreign_key "districts", "provinces"
   add_foreign_key "events", "stores"
+  add_foreign_key "floors", "commerce_centers"
+  add_foreign_key "image_products", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "store_types", "commerce_centers"
   add_foreign_key "store_users", "stores"
   add_foreign_key "store_users", "users"
-  add_foreign_key "stores", "commerce_centers"
+  add_foreign_key "stores", "floors"
   add_foreign_key "stores", "store_types"
 end

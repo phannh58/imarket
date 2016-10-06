@@ -36,7 +36,6 @@ class Api::V1::StoresController < Api::ApplicationController
   private
   def store_params
     params[:store][:image] = set_param_image_base_64 params[:store][:image]
-    params.require(:store).permit :name, :image, :commerce_center_id, :store_code,
-      :store_type
+    params.require(:store).permit :name, :image, :floor_id, :store_type
   end
 end
