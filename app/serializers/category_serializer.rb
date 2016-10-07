@@ -1,6 +1,5 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :image
-  has_one :store
+  attributes :id, :name, :image, :store_id
 
   def image
     object.image.url

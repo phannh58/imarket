@@ -1,6 +1,6 @@
 class Api::V1::FloorsController < Api::ApplicationController
   load_resource
-  before_action :load_commerce_center, only: :index
+  before_action :load_commerce_center, only: [:index, :create, :update]
   before_action :authenticate_with_token!, only: [:create, :update]
 
   def index

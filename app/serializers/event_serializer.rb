@@ -1,4 +1,3 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :name, :content, :start_event, :finish_event
-  has_one :store
+  attributes :id, :name, :content, :start_event, :finish_event, :store_id
 end
