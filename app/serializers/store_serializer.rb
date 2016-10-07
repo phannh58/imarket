@@ -1,6 +1,5 @@
 class StoreSerializer < ActiveModel::Serializer
-  attributes :id, :name, :store_code, :image
-  has_one :commerce_center
+  attributes :id, :name, :image
 
   def image
     object.image.url

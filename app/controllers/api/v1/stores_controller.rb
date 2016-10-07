@@ -1,13 +1,14 @@
 class Api::V1::StoresController < Api::ApplicationController
   load_resource
+  before_action :load_floor, only: :index
   before_action :authenticate_with_token!, only: [:create, :update]
   respond_to :json
 
   def index
     if params[:store_type_id].present?
-      @stores = Store.filter_by_store_type params[:store_type_id]
+      @stores = @floor.stores.filter_by_store_type params[:store_type_id]
     else
-      @stores = Store.all
+      @stores = @floor.stores
     end
     render json: @stores
   end
@@ -34,9 +35,12 @@ class Api::V1::StoresController < Api::ApplicationController
   end
 
   private
+  def load_floor
+    @floor = Floor.find_by id: params[:floor_id]
+  end
+
   def store_params
     params[:store][:image] = set_param_image_base_64 params[:store][:image]
-    params.require(:store).permit :name, :image, :commerce_center_id, :store_code,
-      :store_type
+    params.require(:store).permit :name, :image, :floor_id, :store_type
   end
 end

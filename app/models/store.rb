@@ -1,6 +1,6 @@
 class Store < ActiveRecord::Base
   belongs_to :store_type
-  belongs_to :commerce_center
+  belongs_to :floor
   has_many :categories, dependent: :destroy
   has_many :events, dependent: :destroy
   mount_base64_uploader :image, PhotoUploader
