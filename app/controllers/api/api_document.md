@@ -267,26 +267,52 @@
   * `{"commerce_center":{"id":1,"name":"ĐHCN-ĐHQGHN","image":null}}`
 
 --------------
-#### Search stores with a store_type
 
-**URL:** [api/stores](api/stores)
+##3. Floor
 
-**Method: GET**
+### Show list Floor in Commerce Center
+
+**URL:** [api/floors](api/commerce_centers/1/floors)
+
+**Method: GET **
 
 **Param request:**
 
-  * `store_type_id`, type: integer, presence: true
+  * `commerce_center_id`, type: integer
 
 **Request example:**
 
-  * `GET: https://imarketv1.herokuapp.com/api/stores?store_type_id=1`
+  * `GET: https://imarketv1.herokuapp.com/api/commerce_centers/:commerce_center_id/floors`
+
+  * `GET: https://imarketv1.herokuapp.com/api/commerce_centers/1/events`
+
 
 **Response:**
 
-  * `{"stores": [{"id": 1,"name": "ut"},{"id": 2,"name": "iure"}]}`
+    * `{
+      "floors": [
+      {
+        "id": 1,
+        "name": "Tầng 1",
+        "commerce_center_id": 1
+      },
+      {
+        "id": 2,
+        "name": "Tầng 2",
+        "commerce_center_id": 1
+      },
+      {
+        "id": 3,
+        "name": "Tầng 3",
+        "commerce_center_id": 1
+      }
+      ]
+    }`
+
 
 --------------
-##3. Store
+
+##4. Store
 
 ### Create new Store
 
@@ -327,6 +353,7 @@
     *status: 402*
 
 --------------
+
 
 ### Update Store
 
@@ -372,6 +399,25 @@
     `{ "errors": "..." }`
 
     *status: 402*
+
+--------------
+
+#### Search stores with a store_type
+
+**URL:** [api/stores](api/stores)
+
+**Method: GET**
+
+**Param request:**
+
+  * `store_type_id`, type: integer, presence: true
+
+**Request example:**
+
+  * `GET: https://imarketv1.herokuapp.com/api/stores?store_type_id=1`
+
+**Response:**
+
 
 --------------
 
@@ -436,6 +482,8 @@
   }`
 
 --------------
+
+###5 Event
 
 ### Create new Event
 
@@ -506,7 +554,41 @@
 
 --------------
 
-##4. Category
+##6. Category
+
+
+### Create new Category
+
+**URL:** [api/categories](api/stores/1/categories)
+
+**Method: POST **
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `name`, type: string
+  * `store_id`, type: string
+
+**Request example:**
+
+  * `POST: https://imarketv1.herokuapp.com/api/stores/1/categories`
+  * `params: { {"category": {"name": "Xiaomi", "store_id": "1" } } }`
+
+**Response:**
+
+  * **Success**
+
+    `{"category":{"id":4,"name":"Xiaomi","image":null,"store_id":1}}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 402*
+
+--------------
 
 ### Show information category
 
@@ -573,6 +655,7 @@
 
 --------------
 
+###7 Category
 
 ### Show products in a category
 
@@ -638,7 +721,7 @@
 
 --------------
 
-##5. User
+##8. User
 
 ### Show user information
 

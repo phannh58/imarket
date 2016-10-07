@@ -1,6 +1,6 @@
 class Api::V1::StoresController < Api::ApplicationController
   load_resource
-  before_action :load_floor, only: :index
+  before_action :load_floor, only: [:index, :create, :update]
   before_action :authenticate_with_token!, only: [:create, :update]
   respond_to :json
 
