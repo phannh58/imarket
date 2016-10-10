@@ -316,28 +316,28 @@
 
   * `GET: https://imarketv1.herokuapp.com/api/commerce_centers/:commerce_center_id/floors`
 
-  * `GET: https://imarketv1.herokuapp.com/api/commerce_centers/1/events`
+  * `GET: https://imarketv1.herokuapp.com/api/commerce_centers/1/floors`
 
 
 **Response:**
 
-    * `{
+    `{
       "floors": [
-      {
-        "id": 1,
-        "name": "Tầng 1",
-        "commerce_center_id": 1
-      },
-      {
-        "id": 2,
-        "name": "Tầng 2",
-        "commerce_center_id": 1
-      },
-      {
-        "id": 3,
-        "name": "Tầng 3",
-        "commerce_center_id": 1
-      }
+        {
+          "id": 1,
+          "name": "Tầng 1",
+          "commerce_center_id": 1
+        },
+        {
+          "id": 2,
+          "name": "Tầng 2",
+          "commerce_center_id": 1
+        },
+        {
+          "id": 3,
+          "name": "Tầng 3",
+          "commerce_center_id": 1
+        }
       ]
     }`
 
@@ -374,11 +374,59 @@
 
 --------------
 
-##4. Store
+##4. Store Type
+
+### List store type in commerce center
+
+**URL:** [api/store_types](api/commerce_centers/1/store_types)
+
+**Method: GET **
+
+**Param request:**
+
+  * `commerce_center_id`, type: integer
+
+**Request example:**
+
+  * `GET: https://imarketv1.herokuapp.com/api/commerce_centers/:commerce_center_id/store_types`
+
+  * `GET: https://imarketv1.herokuapp.com/api/commerce_centers/1/store_types`
+
+
+**Response:**
+
+    `{
+      "store_types": [
+        {
+          "id": 1,
+          "name": "sửa chữa"
+        },
+        {
+          "id": 2,
+          "name": "đồ gia dụng"
+        },
+        {
+          "id": 3,
+          "name": "đồ gỗ"
+        },
+        {
+          "id": 4,
+          "name": "Ẩm thực"
+        },
+        {
+          "id": 5,
+          "name": "Đồ ăn nhanh"
+        }
+      ]
+    }`
+
+--------------
+
+##5. Store
 
 ### Create new Store
 
-**URL:** [api/stores](api/stores)
+**URL:** [api/stores](api/floors/1/stores)
 
 **Method: POST **
 
@@ -386,7 +434,6 @@
 
   * `Authorization`, type: string, presence: true (In Headers of request)
   * `name`, type: string
-  * `store_code`, type: string
   * `store_type`, type: string
 
 **Request example:**
@@ -401,8 +448,7 @@
     `{
       "store": {
         "id": 3,
-        "name": "Minh Cuong",
-        "store_code": "CH1"
+        "name": "Minh Cuong"
       }
     }`
 
@@ -419,7 +465,7 @@
 
 ### Update Store
 
-**URL:** [api/stores](api/stores/1)
+**URL:** [api/stores](api/floors/1/stores/1)
 
 **Method: PATCH **
 
@@ -427,13 +473,12 @@
 
   * `Authorization`, type: string, presence: true (In Headers of request)
   * `name`, type: string
-  * `store_code`, type: string
   * `store_type`, type: string
   * `image`, type: string
 
 **Request example:**
 
-  * `PATCH: https://imarketv1.herokuapp.com/api/stores/1`
+  * `PATCH: https://imarketv1.herokuapp.com/api/floors/1/stores/1`
   * `params: { "store": { "name": "Minh Cuong 1", "store_code": "CH11", "image": "/9j/4AAQSkZJRgABAgEBLAEsAAD/4RhFRXhpZgAATU0AKgAAAAgABwESAAMAAAABAAEAAAEaAAUAAAABAAAAYgEbAAUAAAABAAAAagEoAAMAAAABAAIAAAExAAIAAAAcAAAAcgEyAAIAAAAUAAAAjodpAAQAAAABAAAApAAAANAALcbAAAAnEAAtxsAAACcQQWRvYmUgUGhvdG9zaG9wIENTMyBXaW5kb3dzADIwMTU6MDc6MjEgMTA6NTY6MDkAAAAAA6ABAAMAAAAB//8AAKACAAQAAAABAAACdqADAAQAAAABAAABYgAAAAAAAAAGAQMAAwAAAAEABgAAARoABQAAAAEAAAEeARsABQAAAAEAAAEmASgAAwAAAAEAAgAAAgEABAAAAAEAAAEuAgIABAAAAAEAABcPAAAAAAAAAEgAAAABAAAASAAAAAH/2P/gABBKRklGAAECAABIAEgAAP/tAAxBZG9iZV9DTQAC/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAWgCgAwEiAAIRAQMRAf/dAAQAC.... } }`
 
 **Response:**
@@ -444,13 +489,7 @@
       "store": {
         "id": 1,
         "name": "Minh Cuong 1",
-        "store_code": "CH11",
-        "image": "/uploads/store/image/1/file.png",
-        "commerce_center": {
-          "id": 1,
-          "name": "ĐHCN-ĐHQGHN",
-          "image": null
-        }
+        "image": "/uploads/store/image/1/file.png"
       }
     }`
 
@@ -476,7 +515,7 @@
 
 **Request example:**
 
-  * `GET: https://imarketv1.herokuapp.com/api/stores?store_type_id=1`
+  * `GET: https://imarketv1.herokuapp.com/api/floors/1/stores?store_type_id=1`
 
 **Response:**
 
@@ -523,7 +562,7 @@
 
 **Response:**
 
-  * `{
+  *`{
     "events":
     [
       {
@@ -545,7 +584,7 @@
 
 --------------
 
-###5 Event
+###6 Event
 
 ### Create new Event
 
@@ -618,7 +657,7 @@
 
 --------------
 
-##6. Category
+##7. Category
 
 
 ### Create new Category
@@ -719,7 +758,7 @@
 
 --------------
 
-###7 Product
+###8 Product
 
 ### Show products in a category
 
@@ -785,7 +824,7 @@
 
 --------------
 
-##8. User
+##9. User
 
 ### Show user information
 
