@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160719034921) do
   create_table "commerce_centers", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "image",       limit: 255
+    t.string   "address",     limit: 255
     t.integer  "district_id", limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false

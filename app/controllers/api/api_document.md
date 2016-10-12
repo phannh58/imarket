@@ -193,7 +193,7 @@
 
 ### Update Commerce Center
 
-**URL:** [api/commerce_centers](api/commerce_center/1)
+**URL:** [api/commerce_centers](api/commerce_centers/1)
 
 **Method: PUT **
 
@@ -270,6 +270,38 @@
 
 ##3. Floor
 
+### Create new Floor
+
+**URL:** [api/floors](api/commerce_centers/1/floors)
+
+**Method: POST **
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `name`, type: string
+
+**Request example:**
+
+  * `POST: https://imarketv1.herokuapp.com/api/commerce_centers/1/floors`
+  * `params: { "floor": { "name": "Tang 1", "commerce_center_id": "1" } }`
+
+**Response:**
+
+  * **Success**
+
+    `{"commerce_center":{"id":1,"name":"Tang 1","commerce_center_id": "1"}}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 422*
+
+--------------
+
 ### Show list Floor in Commerce Center
 
 **URL:** [api/floors](api/commerce_centers/1/floors)
@@ -309,6 +341,36 @@
       ]
     }`
 
+--------------
+
+### Update Floor
+
+**URL:** [api/commerce_centers](api/commerce_centers/1/floors/1)
+
+**Method: PUT **
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `name`, type: string
+
+**Request example:**
+
+  * `params: { "floor": { "name": "First floor" } }`
+
+**Response:**
+
+  * **Success**
+
+    `{"commerce_center":{"id":1,"name":"First floor","commerce_center_id": "1"}}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 422*
 
 --------------
 
@@ -330,7 +392,7 @@
 **Request example:**
 
   * `POST: https://imarketv1.herokuapp.com/api/stores`
-  * `params: { "store": { "name": "Minh Cuong", "commerce_center_id": "2", "store_code": "CH1"} }`
+  * `params: { "store": { "name": "Minh Cuong", "floor_id": "1", "store_type_id": "1"} }`
 
 **Response:**
 
@@ -404,7 +466,7 @@
 
 #### Search stores with a store_type
 
-**URL:** [api/stores](api/stores)
+**URL:** [api/stores](api/floors/1/stores?store_type_id=1)
 
 **Method: GET**
 
@@ -520,6 +582,8 @@
 
 --------------
 
+
+
 ### Update Event
 
 **URL:** [api/events](api/stores/1/events/1)
@@ -572,7 +636,7 @@
 **Request example:**
 
   * `POST: https://imarketv1.herokuapp.com/api/stores/1/categories`
-  * `params: { {"category": {"name": "Xiaomi", "store_id": "1" } } }`
+  * `params: { "category": {"name": "Xiaomi", "store_id": "1" } }`
 
 **Response:**
 
@@ -610,7 +674,7 @@
 
   * **Success**
 
-    `{"category":{"id":1,"name":"Apple1","image":"/uploads/category/image/1/file.png","store":{"id":1,"name":"Cửa Hàng số 1","store_code":"CH1","image":"/uploads/store/image/1/file.png","commerce_center":{"id":1,"name":"DHCN","image":"/uploads/commerce_center/image/1/file.png"}}}}`
+    `{"categories":[{"id":10,"name":"Iphone 1","price":"0.0","quantity":1000,"description":"The he moi nhat cua dong dien thoai Iphone","promotion_percent":0},{"id":11,"name":"Iphone 2","price":"0.0","quantity":1000,"description":"The he moi nhat cua dong dien thoai Iphone","promotion_percent":0},{"id":12,"name":"Iphone 3","price":"0.0","quantity":1000,"description":"The he moi nhat cua dong dien thoai Iphone","promotion_percent":0}]}`
 
     *status: 200*
 
@@ -655,7 +719,7 @@
 
 --------------
 
-###7 Category
+###7 Product
 
 ### Show products in a category
 
@@ -677,7 +741,7 @@
 
   * **Success**
 
-    `{ "categories":[{"id":1,"name":"product 1","price":30000000,"quantity":2,"product_code":"MSP1","sale_off":0},{"id":2,"name":"product 2","price":100000000,"quantity":3,"product_code":"MSP2","sale_off":0}] }`
+    `{"products":[{"id":10,"name":"Iphone 1","price":"0.0","quantity":1000,"description":"The he moi nhat cua dong dien thoai Iphone","promotion_percent":0},{"id":11,"name":"Iphone 2","price":"0.0","quantity":1000,"description":"The he moi nhat cua dong dien thoai Iphone","promotion_percent":0},{"id":12,"name":"Iphone 3","price":"0.0","quantity":1000,"description":"The he moi nhat cua dong dien thoai Iphone","promotion_percent":0}]}`
 
     *status: 200*
 
@@ -709,7 +773,7 @@
 
   * **Success**
 
-    `{"product":{"id":1,"name":"product 1","price":30000000,"quantity":2,"product_code":"MSP1","sale_off":0}}`
+    `{"product":{"id":1,"name":"Iphone 100","price":0,"quantity":null,"description":null,"promotion_percent":0}}`
 
     *status: 200*
 
