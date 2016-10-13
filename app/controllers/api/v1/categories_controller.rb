@@ -18,7 +18,8 @@ class Api::V1::CategoriesController < Api::ApplicationController
   end
 
   def show
-    render json: @category
+    @products = @category.products
+    render json: @products
   end
 
   def update

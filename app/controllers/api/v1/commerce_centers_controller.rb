@@ -37,6 +37,6 @@ class Api::V1::CommerceCentersController < Api::ApplicationController
   private
   def commerce_center_params
     params[:commerce_center][:image] = set_param_image_base_64 params[:commerce_center][:image]
-    params.require(:commerce_center).permit :name, :image
+    params.require(:commerce_center).permit :name, :image, :address
   end
 end

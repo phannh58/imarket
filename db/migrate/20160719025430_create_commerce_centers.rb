@@ -3,6 +3,7 @@ class CreateCommerceCenters < ActiveRecord::Migration
     create_table :commerce_centers do |t|
       t.string :name
       t.string :image
+      t.string :address
       t.references :district, index: true, foreign_key: true
 
       t.timestamps null: false
