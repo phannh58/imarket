@@ -9,9 +9,10 @@ Rails.application.routes.draw do
       get "login/google" => "social#google"
       resources :users, only: [:show, :create, :update, :destroy]
       resources :sessions, only: [:create, :destroy]
+      resources :points
       resources :commerce_centers do
         resources :floors
-        resources :store_types, only: :index
+        resources :store_types
       end
       resources :floors do
         resources :stores

@@ -1,3 +1,7 @@
 class StoreTypeSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :image
+
+  def image
+    object.image.url
+  end
 end
