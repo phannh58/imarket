@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :destroy]
       resources :commerce_centers do
         resources :floors
+        resources :store_types, only: :index
       end
       resources :floors do
         resources :stores

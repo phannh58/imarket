@@ -7,6 +7,11 @@ class Api::V1::ProductsController < Api::ApplicationController
     render json: @product
   end
 
+  def new
+    @product = Product.new
+    @product.image_products.build
+  end
+
   def index
     @products = @category.products
     render json: @products
@@ -35,7 +40,9 @@ class Api::V1::ProductsController < Api::ApplicationController
   end
 
   def product_params
+    params[:product][:image_products_attributes].map {|param|
+      param[1]["photo"] = set_param_image_base_64 param[1]["photo"] }
     params.require(:product).permit :name, :price, :quantity, :description,
-     :category_id, :photo
+      :category_id, image_products_attributes: [:id, :product_id, :name, :photo]
   end
 end
