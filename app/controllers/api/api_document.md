@@ -824,7 +824,68 @@
 
 --------------
 
-##9. User
+##9.Point
+
+### List Point
+
+**URL:** [api/points](api/points)
+
+**Method: GET **
+
+**Param request:**
+
+**Request example:**
+
+  * `GET: https://imarketv1.herokuapp.com/api/points`
+
+  * `GET: https://imarketv1.herokuapp.com/api/points`
+
+
+**Response:**
+
+    ` {
+      "points": [
+        {
+          "name": "A",
+          "point_type": 1,
+          "latitude": "21.007126",
+          "longtitude": "105.801424",
+          "store_type_id": 1
+        },
+        {
+          "name": "B",
+          "point_type": 1,
+          "latitude": "24.007126",
+          "longtitude": "106.801424",
+          "store_type_id": 1
+        },
+        {
+          "name": "c",
+          "point_type": 1,
+          "latitude": "21.007126",
+          "longtitude": "105.801424",
+          "store_type_id": 1
+        },
+        {
+          "name": "D",
+          "point_type": 1,
+          "latitude": "26.007126",
+          "longtitude": "107.801424",
+          "store_type_id": 1
+        },
+        {
+          "name": "E",
+          "point_type": 0,
+          "latitude": "28.007126",
+          "longtitude": "106.701424",
+          "store_type_id": null
+        }
+      ]
+    }`
+
+--------------
+
+##10. User
 
 ### Show user information
 
