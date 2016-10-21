@@ -78,12 +78,13 @@
   * `user[full_name]`, type: string, presence: true, length: {maximum: 50}
   * `user[email]`, type: string, presence: true, length: {maximum: 255}
   * `user[password]`, type: string, presence: true, length: {minimum: 6}
+  * `user[phone_number]`, type: string, presence: true, length: {minimum: 10, maximum: 11}
   * `user[password_confirmation]`, type: string, presence: true, length: {minimum: 6}
   * `user[avata]`, type: string
 
 **Request example:**
 
-  * `POST: {"user": {"full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password": "12345678", "password_confirmation": "12345678"}}`
+  * `POST: {"user": {"full_name": "Tran Xuan Thang", "email": "tran.xuan.thang@framgia.com", "password": "12345678", "password_confirmation": "12345678", "phone_number": "0987654321"}}`
 
 **Response:**
 
@@ -847,38 +848,70 @@
       "points": [
         {
           "name": "A",
-          "point_type": 1,
-          "latitude": "21.007126",
-          "longtitude": "105.801424",
-          "store_type_id": 1
+          "point_type": 0,
+          "latitude": "21.007166",
+          "longtitude": "105.801308",
+          "store_type_id": 1,
+          "matching": [
+            {
+              "name": "B",
+              "point_type": 1,
+              "latitude": "21.036757",
+              "longtitude": "105.780543",
+              "store_type_id": 1,
+              "matching": [
+                {
+                  "name": "E",
+                  "point_type": 4,
+                  "latitude": "105.796382",
+                  "longtitude": "21.006947",
+                  "store_type_id": 4,
+                  "matching": []
+                }
+              ]
+            },
+            {
+              "name": "D",
+              "point_type": 0,
+              "latitude": "21.037742",
+              "longtitude": "105.782478",
+              "store_type_id": 3,
+              "matching": []
+            }
+          ]
         },
         {
           "name": "B",
           "point_type": 1,
-          "latitude": "24.007126",
-          "longtitude": "106.801424",
-          "store_type_id": 1
-        },
-        {
-          "name": "c",
-          "point_type": 1,
-          "latitude": "21.007126",
-          "longtitude": "105.801424",
-          "store_type_id": 1
+          "latitude": "21.036757",
+          "longtitude": "105.780543",
+          "store_type_id": 1,
+          "matching": [
+            {
+              "name": "E",
+              "point_type": 4,
+              "latitude": "105.796382",
+              "longtitude": "21.006947",
+              "store_type_id": 4,
+              "matching": []
+            }
+          ]
         },
         {
           "name": "D",
-          "point_type": 1,
-          "latitude": "26.007126",
-          "longtitude": "107.801424",
-          "store_type_id": 1
+          "point_type": 0,
+          "latitude": "21.037742",
+          "longtitude": "105.782478",
+          "store_type_id": 3,
+          "matching": []
         },
         {
           "name": "E",
-          "point_type": 0,
-          "latitude": "28.007126",
-          "longtitude": "106.701424",
-          "store_type_id": null
+          "point_type": 4,
+          "latitude": "105.796382",
+          "longtitude": "21.006947",
+          "store_type_id": 4,
+          "matching": []
         }
       ]
     }`
