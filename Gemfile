@@ -14,6 +14,7 @@ gem "devise"
 gem "carrierwave", "0.11.2"
 gem "carrierwave-base64"
 gem "mini_magick", "4.5.1"
+gem "cloudinary"
 gem "koala"
 gem "httparty"
 gem "sdoc", "~> 0.4.0", group: :doc
