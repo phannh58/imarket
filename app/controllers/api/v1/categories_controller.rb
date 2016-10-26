@@ -1,6 +1,6 @@
 class Api::V1::CategoriesController < Api::ApplicationController
-  before_action :authenticate_with_token!, only: [:create, :update]
   load_resource
+  before_action :authenticate_with_token!, only: [:create, :update]
   before_action :load_store, only: :index
 
   def index
@@ -18,8 +18,7 @@ class Api::V1::CategoriesController < Api::ApplicationController
   end
 
   def show
-    @products = @category.products
-    render json: @products
+    render json: @category
   end
 
   def update
