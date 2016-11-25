@@ -27,9 +27,11 @@ ActiveRecord::Schema.define(version: 20161014011536) do
     t.string   "name",        limit: 255
     t.string   "image",       limit: 255
     t.string   "address",     limit: 255
+    t.decimal  "latitude",                precision: 10, scale: 6
+    t.decimal  "longtitude",              precision: 10, scale: 6
     t.integer  "district_id", limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   add_index "commerce_centers", ["district_id"], name: "index_commerce_centers_on_district_id", using: :btree
