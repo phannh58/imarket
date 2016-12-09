@@ -26,6 +26,19 @@ en:
     api:
       title: "Framgia iMarket API"
       wrong_access_token: "Wrong access token"
+  static_pages:
+    app:
+      design: "Anomynous"
+      name: "Imarket"
+      home: "Welcome to Imarket version Web"
+  layout:
+    footer:
+      text: "Design by"
+    header:
+      name_app: "Imarket"
+      home: "Home"
+      login: "Login"
+      signup: "SignUp"
   api:
     v1:
       sessions:

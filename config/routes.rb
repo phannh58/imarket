@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get "api_document" => "application#api"
 
   devise_for :users
+  get "static_pages/home"
+
   namespace :api, defaults: {format: "json"} do
     scope module: :v1 do
       get "login/facebook" => "social#facebook"
