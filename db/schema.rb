@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20161014011536) do
     t.string   "name",         limit: 255
     t.text     "content",      limit: 65535
     t.datetime "start_event"
+    t.integer  "event_type",   limit: 4
     t.datetime "finish_event"
     t.integer  "store_id",     limit: 4
     t.datetime "created_at",                 null: false

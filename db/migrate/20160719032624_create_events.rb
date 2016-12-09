@@ -4,6 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :name
       t.text :content
       t.datetime :start_event
+      t.integer :event_type
       t.datetime :finish_event
       t.references :store, index: true, foreign_key: true
 

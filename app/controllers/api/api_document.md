@@ -545,6 +545,44 @@
 
 --------------
 
+###6 Event
+
+### Create new Event
+
+**URL:** [api/events](api/stores/1/events)
+
+**Method: POST **
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `name`, type: string
+  * `store_id`, type: string
+  * `event_type`, type: integer
+  * `start_event`, type: date
+  * `finish_event`, type: date
+
+**Request example:**
+
+  * `POST: https://imarketv1.herokuapp.com/api/stores/1/events`
+  * `params: { "event": {"name": "Tung Bung Khuyen Mai 123", "content": "Giam Gia 30% tat ca cac mat hang!!!sayohyeah", "start_event": "Thu, 29 Sep 2016", "finish_event": "Thu, 30 Sep 2016", "store_id": "1", "event_type": "1"} }`
+
+**Response:**
+
+  * **Success**
+
+    `{"events":[{"id":1,"name":"Tung Bung Khuyen Mai 123","content":"Giam Gia 30% tat ca cac mat hang","event_type":1,"start_event":"2016-09-29T00:00:00.000Z","finish_event":"2016-09-30T00:00:00.000Z","store_id":1}]}`
+
+    *status: 200*
+
+  * **Unsuccess**
+
+    `{ "errors": "..." }`
+
+    *status: 402*
+
+--------------
+
 ### Show events in a store
 
 **URL:** [api/stores](api/stores/1/events)
@@ -564,99 +602,21 @@
 **Response:**
 
   *`{
-    "events":
-    [
+    "events": [
       {
         "id": 1,
-        "name": "event 1",
-        "content": null,
-        "start_event": "2016-09-09",
-        "finish_event": "2016-09-20",
-      },
-      {
-        "id": 2,
-        "name": "event 2",
-        "content": "this is event 2 in store",
-        "start_event": "2016-09-09",
-        "finish_event": "2016-09-20",
+        "name": "Tung Bung Khuyen Mai 123",
+        "content": "Giam Gia 30% tat ca cac mat hang",
+        "event_type": 1,
+        "start_event": "2016-09-29T00:00:00.000Z",
+        "finish_event": "2016-09-30T00:00:00.000Z",
+        "store_id": 1
       }
     ]
   }`
 
 --------------
 
-###6 Event
-
-### Create new Event
-
-**URL:** [api/events](api/stores/1/events)
-
-**Method: POST **
-
-**Param request:**
-
-  * `Authorization`, type: string, presence: true (In Headers of request)
-  * `name`, type: string
-  * `store_id`, type: string
-  * `start_event`, type: date
-  * `finish_event`, type: date
-
-**Request example:**
-
-  * `POST: https://imarketv1.herokuapp.com/api/stores/1/events`
-  * `params: { "event": {"name": "Tung Bung Khuyen Mai 123", "content": "Giam Gia 30% tat ca cac mat hang!!!sayohyeah", "start_event": "Thu, 29 Sep 2016", "finish_event": "Thu, 30 Sep 2016", "store_id": "1"} }`
-
-**Response:**
-
-  * **Success**
-
-    `{"event":{"id":1,"name":"Tung Bung Khuyen Mai 123","content":"Giam Gia 30% tat ca cac mat hang!!!sayohyeah","start_event":"2016-09-29T00:00:00.000Z","finish_event":"2016-09-30T00:00:00.000Z","store":{"id":1,"name":"Cừa Hàng 1","store_code":"CH1"}}}`
-
-    *status: 200*
-
-  * **Unsuccess**
-
-    `{ "errors": "..." }`
-
-    *status: 402*
-
---------------
-
-
-
-### Update Event
-
-**URL:** [api/events](api/stores/1/events/1)
-
-**Method: PATCH **
-
-**Param request:**
-
-  * `Authorization`, type: string, presence: true (In Headers of request)
-  * `name`, type: string
-  * `store_code`, type: string
-  * `store_type`, type: string
-
-**Request example:**
-
-  * `PATCH: https://imarketv1.herokuapp.com/api/stores/1/events/1`
-  * `params: { "event": {"name": "Tung Bung Khuyen Mai", "content": "Giam Gia 30% tat ca cac mat hang"} }`
-
-**Response:**
-
-  * **Success**
-
-    `{"event":{"id":24,"name":"Tung Bung Khuyen Mai","content":"Giam Gia 30% tat ca cac mat hang","start_event":"2016-09-29T00:00:00.000Z","finish_event":"2016-09-30T00:00:00.000Z","store":{"id":1,"name":"Cừa Hàng 1","store_code":"CH1"}}}`
-
-    *status: 200*
-
-  * **Unsuccess**
-
-    `{ "errors": "..." }`
-
-    *status: 402*
-
---------------
 
 ##7. Category
 
