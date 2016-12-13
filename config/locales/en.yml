@@ -39,6 +39,7 @@ en:
       home: "Home"
       login: "Login"
       signup: "SignUp"
+      logout: "LogOut"
   api:
     v1:
       sessions:

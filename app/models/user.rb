@@ -1,20 +1,15 @@
 class User < ActiveRecord::Base
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
-  before_save {email.downcase!}
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+    :trackable, :validatable
   before_create :generate_authentication_token!
 
   validates :auth_token, uniqueness: true
   validates :full_name, presence: true, length: {maximum: 50}
-  validates :phone_number, presence: true, length: {minimum: 10, maximum: 11}
-  validates :email, presence: true, length: {maximum: 255},
-    format: {with: VALID_EMAIL_REGEX},
-    uniqueness: {scope: :uid, case_sensitive: false}
+  validates :phone_number, length: {minimum: 10, maximum: 11}
   mount_base64_uploader :avatar, PhotoUploader
 
   ATTRIBUTES_PARAMS = [:full_name, :email, :password, :password_confirmation,
-    :avatar, :birth_day, :phone_number]
-  has_secure_password
+    :avatar, :phone_number]
 
   def generate_authentication_token!
     begin
