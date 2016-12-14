@@ -180,7 +180,7 @@
 
   * **Success**
 
-    `{"commerce_center":{"id":4,"name":"Ecomart","image":{"image":{"url":null}}}}`
+    `{"commerce_center":{"id":4,"name":"Ecomart","image":null } }`
 
     *status: 200*
 
@@ -211,7 +211,7 @@
 
   * **Success**
 
-    `{"commerce_center":{"id":1,"name":"DHCN","image":"/uploads/commerce_center/image/1/file.png"}}`
+    `{"commerce_center":{"id":1,"name":"DHCN","image":"http://res-5.cloudinary.com/dnvmk5bvc/image/upload/v1481082897/o1kjarlvllkyghznxayo.jpg"}}`
 
     *status: 200*
 
@@ -400,26 +400,41 @@
       "store_types": [
         {
           "id": 1,
-          "name": "sửa chữa"
+          "name": "Cua hang quan ao",
+          "image": "http://res-4.cloudinary.com/dnvmk5bvc/image/upload/v1481083494/gwcccnde10xhdtlraffl.jpg"
         },
         {
           "id": 2,
-          "name": "đồ gia dụng"
+          "name": "Cua hang dien thoai",
+          "image": "http://res-2.cloudinary.com/dnvmk5bvc/image/upload/v1481083515/ixvhtulxuiwwrt6jtyn4.jpg"
         },
         {
           "id": 3,
-          "name": "đồ gỗ"
+          "name": "Cua hang sach",
+          "image": "http://res-5.cloudinary.com/dnvmk5bvc/image/upload/v1481083531/c7mgimzwe3bjsl4onzla.jpg"
         },
         {
           "id": 4,
-          "name": "Ẩm thực"
+          "name": "Cua hang an uong",
+          "image": "http://res-3.cloudinary.com/dnvmk5bvc/image/upload/v1481083551/h0wd0cznweokfyrbwyyg.png"
         },
         {
           "id": 5,
-          "name": "Đồ ăn nhanh"
+          "name": "Cua hang my pham",
+          "image": "http://res-3.cloudinary.com/dnvmk5bvc/image/upload/v1481083571/ped7euinjmmhhcadgtc1.jpg"
+        },
+        {
+          "id": 6,
+          "name": "rap chieu phim",
+          "image": "http://res-4.cloudinary.com/dnvmk5bvc/image/upload/v1481083614/hwndjhy79mxjkynyjkef.jpg"
+        },
+        {
+          "id": 7,
+          "name": "Cua hang giai tri",
+          "image": "http://res-5.cloudinary.com/dnvmk5bvc/image/upload/v1481083647/d1ovw3gglz8vqax6iv1x.jpg"
         }
-      ]
-    }`
+        ]
+      }`
 
 --------------
 
@@ -435,6 +450,7 @@
 
   * `Authorization`, type: string, presence: true (In Headers of request)
   * `name`, type: string
+  * `image`, type: string
   * `store_type`, type: string
 
 **Request example:**
@@ -449,7 +465,8 @@
     `{
       "store": {
         "id": 3,
-        "name": "Minh Cuong"
+        "name": "Minh Cuong",
+        "image": null
       }
     }`
 
@@ -489,8 +506,8 @@
     `{
       "store": {
         "id": 1,
-        "name": "Minh Cuong 1",
-        "image": "/uploads/store/image/1/file.png"
+        "name": "Apple",
+        "image": "http://res-5.cloudinary.com/dnvmk5bvc/image/upload/v1481084746/bnipe5urzp34qdnoulpm.png"
       }
     }`
 
@@ -519,6 +536,21 @@
   * `GET: https://imarketv1.herokuapp.com/api/floors/1/stores?store_type_id=1`
 
 **Response:**
+
+  `{
+    "stores": [
+      {
+        "id": 1,
+        "name": "Apple",
+        "image": "http://res-5.cloudinary.com/dnvmk5bvc/image/upload/v1481084746/bnipe5urzp34qdnoulpm.png"
+      },
+      {
+        "id": 2,
+        "name": "SamSung",
+        "image": "http://res-2.cloudinary.com/dnvmk5bvc/image/upload/v1481084775/gdpykzgnsc8ydv7jq5sb.png"
+      }
+    ]
+  }`
 
 
 --------------
@@ -811,67 +843,28 @@
           "point_type": 0,
           "latitude": "21.007166",
           "longtitude": "105.801308",
-          "store_type_id": 1,
-          "matching": [
-            {
-              "name": "B",
-              "point_type": 1,
-              "latitude": "21.036757",
-              "longtitude": "105.780543",
-              "store_type_id": 1,
-              "matching": [
-                {
-                  "name": "E",
-                  "point_type": 4,
-                  "latitude": "105.796382",
-                  "longtitude": "21.006947",
-                  "store_type_id": 4,
-                  "matching": []
-                }
-              ]
-            },
-            {
-              "name": "D",
-              "point_type": 0,
-              "latitude": "21.037742",
-              "longtitude": "105.782478",
-              "store_type_id": 3,
-              "matching": []
-            }
-          ]
+          "store_type_id": 1
         },
         {
           "name": "B",
           "point_type": 1,
           "latitude": "21.036757",
           "longtitude": "105.780543",
-          "store_type_id": 1,
-          "matching": [
-            {
-              "name": "E",
-              "point_type": 4,
-              "latitude": "105.796382",
-              "longtitude": "21.006947",
-              "store_type_id": 4,
-              "matching": []
-            }
-          ]
+          "store_type_id": 1
         },
         {
           "name": "D",
           "point_type": 0,
           "latitude": "21.037742",
           "longtitude": "105.782478",
-          "store_type_id": 3,
-          "matching": []
+          "store_type_id": 3
         },
         {
           "name": "E",
           "point_type": 4,
-          "latitude": "105.796382",
-          "longtitude": "21.006947",
-          "store_type_id": 4,
-          "matching": []
+          "latitude": "21.006947",
+          "longtitude": "105.796382",
+          "store_type_id": 4
         }
       ]
     }`
