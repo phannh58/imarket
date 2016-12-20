@@ -39,6 +39,9 @@ en:
       home: "Home"
       login: "Login"
       signup: "SignUp"
+  events:
+    format:
+      time: "%H:%M %Y/%m/%d"
   api:
     v1:
       sessions:
@@ -46,3 +49,4 @@ en:
           error_login: "Invalid email or password"
         destroy:
           error_logout: "Invalid id of user or authorization"
+

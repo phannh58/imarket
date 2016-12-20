@@ -3,11 +3,11 @@
 <head>
   <title><%= t "static_pages.app.name" %></title>
   <%= stylesheet_link_tag "application", media: "all",
-      "data-turbolinks-track": "reload" %>
-    <%= javascript_include_tag "application",
-      "data-turbolinks-track": "reload" %>
-    <%= render "layouts/shim" %>
-    <%= csrf_meta_tags %>
+    "data-turbolinks-track": "reload" %>
+  <%= javascript_include_tag "application",
+    "data-turbolinks-track": "reload" %>
+  <%= render "layouts/shim" %>
+  <%= csrf_meta_tags %>
 </head>
 <body>
   <%= render "layouts/header" %>
