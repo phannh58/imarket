@@ -31,7 +31,7 @@ class Api::V1::StoreTypesController < Api::ApplicationController
   end
 
   def store_type_params
-    params[:store_type][:image] = set_param_image_base_64 params[:store_type][:image]
+    params[:store_type][:image] = set_param_xml_base_64 params[:store_type][:image]
     params.require(:store_type).permit :name, :image, :commerce_center_id
   end
 end
