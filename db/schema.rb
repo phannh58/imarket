@@ -122,11 +122,12 @@ ActiveRecord::Schema.define(version: 20161014011536) do
   end
 
   create_table "store_types", force: :cascade do |t|
-    t.string   "name",               limit: 255
-    t.string   "image",              limit: 255
-    t.integer  "commerce_center_id", limit: 4
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "name",                   limit: 255
+    t.string   "image",                  limit: 255
+    t.string   "current_location_image", limit: 255
+    t.integer  "commerce_center_id",     limit: 4
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   add_index "store_types", ["commerce_center_id"], name: "index_store_types_on_commerce_center_id", using: :btree

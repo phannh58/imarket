@@ -3,6 +3,10 @@ class Api::V1::StoreTypesController < Api::ApplicationController
   before_action :load_commerce_center, only: [:index, :create, :update]
   before_action :authenticate_with_token!, only: [:create, :update]
 
+  def show
+    render json: @store_type
+  end
+
   def index
     @store_types = @commerce_center.store_types
     render json: @store_types
@@ -32,6 +36,9 @@ class Api::V1::StoreTypesController < Api::ApplicationController
 
   def store_type_params
     params[:store_type][:image] = set_param_xml_base_64 params[:store_type][:image]
-    params.require(:store_type).permit :name, :image, :commerce_center_id
+    params[:store_type][:current_location_image] =
+      set_param_xml_base_64 params[:store_type][:current_location_image]
+    params.require(:store_type).permit :name, :image, :current_location_image,
+      :commerce_center_id
   end
 end
