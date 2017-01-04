@@ -15,6 +15,7 @@ class Api::V1::EventsController < Api::ApplicationController
   def create
     @event = Event.create event_params
     if @event.save
+      SendNotificationService.new(@event).perfom()
       render json: @event, status: 200, location: [:api, @store, @event]
     else
       render json: {errors: @event.errors}, status: 420
@@ -23,6 +24,7 @@ class Api::V1::EventsController < Api::ApplicationController
 
   def update
     if @event.update_attributes event_params
+      SendNotificationService.new(@event).perfom()
       render json: @event, status: 200, location: [:api, @store, @event]
     else
       render json: {errors: @event.errors}, status: 420
