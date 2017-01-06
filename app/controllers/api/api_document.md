@@ -174,13 +174,23 @@
 **Request example:**
 
   * `POST: https://imarketv1.herokuapp.com/api/commerce_centers`
-  * `params: { "commerce_center": { "name": "Ecomart" } }`
+  * `params: { "commerce_center": { "name": "BigC Thang Long" , "address": "212 Trần Duy Hưng, Trung Hoà, Cầu Giấy, Hà Nội, Vietnam", "latitude": "21.0071503", "longtitude": "105.7912203", "district": "Cầu Giấy"} }`
 
 **Response:**
 
   * **Success**
 
-    `{"commerce_center":{"id":4,"name":"Ecomart","image":null } }`
+    `{
+      "commerce_center": {
+        "id": 1,
+        "name": "BigC Thang Long",
+        "image": null,
+        "address": "212 Trần Duy Hưng, Trung Hoà, Cầu Giấy, Hà Nội, Vietnam",
+        "latitude": "21.00715",
+        "longtitude": "105.79122"
+      }
+      }
+    `
 
     *status: 200*
 
@@ -211,7 +221,17 @@
 
   * **Success**
 
-    `{"commerce_center":{"id":1,"name":"DHCN","image":"http://res-5.cloudinary.com/dnvmk5bvc/image/upload/v1481082897/o1kjarlvllkyghznxayo.jpg"}}`
+    `{
+      "commerce_center": {
+        "id": 1,
+        "name": "BigC Thang Long",
+        "image": "http://res.cloudinary.com/dnvmk5bvc/image/upload/v1482716161/m9ujewlcuckjuzkjjjhd.jpg",
+        "address": "212 Trần Duy Hưng, Trung Hoà, Cầu Giấy, Hà Nội, Vietnam",
+        "latitude": "21.00715",
+        "longtitude": "105.79122"
+        }
+      }
+    `
 
     *status: 200*
 
@@ -245,9 +265,28 @@
 
   * `search=Metro`
 
-    * `{"commerce_centers":[{"id":2,"name":"Metro Thang Long"}]}`
-
-
+    * `
+    {
+      "commerce_centers": [
+        {
+          "id": 2,
+          "name": "Metro Thăng Long",
+          "image": null,
+          "address": "Phạm Văn Đồng, Cổ Nhuế 1, Từ Liêm, Hà Nội, Vietnam",
+          "latitude": "21.054351",
+          "longtitude": "105.778309"
+        },
+        {
+          "id": 1,
+          "name": "BigC Thang Long",
+          "image": null,
+          "address": "212 Trần Duy Hưng, Trung Hoà, Cầu Giấy, Hà Nội, Vietnam",
+          "latitude": "21.00715",
+          "longtitude": "105.79122"
+        }
+      ]
+    }
+    `
 --------------
 
 #### Show commerce center information
@@ -265,7 +304,16 @@
 
 **Response:**
 
-  * `{"commerce_center":{"id":1,"name":"ĐHCN-ĐHQGHN","image":null}}`
+  * `{
+    "commerce_center": {
+      "id": 1,
+      "name": "BigC Thang Long",
+      "image": "http://res.cloudinary.com/dnvmk5bvc/image/upload/v1482716161/m9ujewlcuckjuzkjjjhd.jpg",
+      "address": "212 Trần Duy Hưng, Trung Hoà, Cầu Giấy, Hà Nội, Vietnam",
+      "latitude": "21.00715",
+      "longtitude": "105.79122"
+    }
+  }`
 
 --------------
 

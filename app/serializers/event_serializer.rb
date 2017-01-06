@@ -3,10 +3,10 @@ class EventSerializer < ActiveModel::Serializer
     :start_event, :finish_event, :store_id
 
   def start_event
-    object.start_event.strftime(t "events.format.time")
+    object.start_event.strftime(I18n.t('events.format.time'))
   end
 
   def finish_event
-    object.finish_event.strftime(t "events.format.time")
+    object.finish_event.strftime(I18n.t('events.format.time'))
   end
 end
