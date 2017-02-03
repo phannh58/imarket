@@ -49,4 +49,9 @@ en:
           error_login: "Invalid email or password"
         destroy:
           error_logout: "Invalid id of user or authorization"
-
+      follow:
+        create:
+          success: "Followed store"
+          fail: "Failed Follow store"
+        destroy:
+          fail: "Failed unfollow store"

@@ -12,9 +12,15 @@ Rails.application.routes.draw do
       resources :users, only: [:show, :create, :update, :destroy]
       resources :sessions, only: [:create, :destroy]
       resources :points
+      resources :relationships, only: [:create, :destroy]
       resources :commerce_centers do
         resources :floors
         resources :store_types
+      end
+      resources :users do
+        member do
+          get "/following" => "relationships#index", as: "following"
+        end
       end
       resources :floors do
         resources :stores

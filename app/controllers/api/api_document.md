@@ -941,3 +941,71 @@
     *status: 422*
 
 --------------
+
+##11. Follow Store
+
+###Follow
+
+**URL:** [api/relationships](api/relationships)
+
+**Method: PUSH**
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `follower_id`, type: int, presence: true, class: "User"
+  * `followed_id`, type: int, presence: true, class: "Store"
+
+**Request example:**
+
+  * ` POST: {"relationship": { "follower_id": "1", "followed_id": "2"} }`
+
+  **Response**
+
+    * **Success**
+
+      `{
+        "id": 4,
+        "follower_id": 1,
+        "followed_id": 2
+      }`
+
+      *status: 200*
+
+    * **Unsucess**
+
+      `{"message": "Failed Follow store"}`
+
+      *status: 422*
+
+---------------
+
+###Unfollow
+
+**URL:** [api/relationships/1](api/relationships/1)
+
+**Method: Delete**
+
+**Param request:**
+
+  * `Authorization`, type: string, presence: true (In Headers of request)
+  * `id`, type:int, presence: true
+
+**Request example:**
+
+  * `DELETE: https://imarketv1.herokuapp.com/api/relationships/1`
+
+  **Response:**
+
+   * **Success**
+
+    `Blank`
+
+  * **Unsuccess**
+
+    `{ "message": "Failed unfollow store" }`
+
+    *status: 422*
+
+--------------
+

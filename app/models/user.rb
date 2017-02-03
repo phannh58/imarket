@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  has_many :active_relationships, class_name: Relationship.name,
+    foreign_key: :follower_id, dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
 
   before_save {email.downcase!}
   before_create :generate_authentication_token!
@@ -20,6 +23,18 @@ class User < ActiveRecord::Base
     begin
       self.auth_token = Devise.friendly_token
     end while self.class.exists? auth_token: auth_token
+  end
+
+  def follow store
+    active_relationships.create followed_id: store.id
+  end
+
+  def unfollow store
+    active_relationships.find_by(followed_id: store.id).destroy
+  end
+
+  def following? store
+    following.include? store
   end
 
   class << self
